@@ -171,8 +171,37 @@ WHERE id IN (1,2,3);   </code></pre><p>####如果数据是相同的批量更新<
     set 字段名=值
     where 限定条件</code></pre><p>##查询（select）语句</p>
 <h3 id="限定查询"><a href="#限定查询" class="headerlink" title="限定查询"></a>限定查询</h3><p>####多个条件判断<br>    SELECT<br>    id,<br>    region_name,<br>    ent_name,<br>    statistics_date,<br>    statistics_cycle,<br>    round(sum(if(energy_type=’电’,energy_value,0)),2) elc_value,<br>    round(sum(if(energy_type=’电’,energy_value_tce,0)),2) elc_tce,<br>    round(sum(if(energy_type=’电’,energy_consume_rate,0)),2) elc_rate,<br>    round(sum(if(energy_type=’煤炭’,energy_value,0)),2) water_value,<br>    round(sum(if(energy_type=’煤炭’,energy_value_tce,0)),2) water_tce,<br>    round(sum(if(energy_type=’煤炭’,energy_consume_rate,0)),2) water_rate,<br>    round(sum(if(energy_type=’天然气’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’天然气’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’天然气’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’石油’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’石油’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’石油’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’其他’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’其他’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’其他’,energy_consume_rate,0)),2) gas_rate,<br>    data_upload_stability_rate<br>    FROM<br>        t_energy_dynamics_monitor<br>    GROUP BY ent_name</p>
-<p>####sum（if）<br>    sum(if(条件,列值,0))<br>    注解：sum是求和函数，条件为真时，执行列值（字段名）求和也就是累加，条件为假时为0求和（当然还是0）<br>    1.单条件判断格式，sum(if(条件字段名=值,需要计算sum的字段名,0))<br>    2.多条件判断格式，sum(if(条件字段名&gt;值 AND 条件字段名&gt;值 AND 条件字段名=值,1,0))<br>    注解：多条件判断格式整体含义为，计算满足条件的数据总数，如果满足条件，那么数据总数加1，所以1的含义为累加1<br>##常用函数<br>####count（）<br>    count（字段）数量<br>    1.统计总数count(if(条件字段名=值,true,null))  count(if(sax=’男’,true,null)) 数量<br>    2.统计总数去重复值，count(DISTINCT 需要计算count的字段名,if(条件字段名=值,true,null))<br>    round（字段，需保留小数点后几位（2））保留小数点后两位<br>####你好</p>
+<pre><code>这个group by后面需要跟着上面需要查找的内容，所有字段</code></pre><p>####sum（if）<br>    sum(if(条件,列值,0))<br>    注解：sum是求和函数，条件为真时，执行列值（字段名）求和也就是累加，条件为假时为0求和（当然还是0）<br>    1.单条件判断格式，sum(if(条件字段名=值,需要计算sum的字段名,0))<br>    2.多条件判断格式，sum(if(条件字段名&gt;值 AND 条件字段名&gt;值 AND 条件字段名=值,1,0))<br>    注解：多条件判断格式整体含义为，计算满足条件的数据总数，如果满足条件，那么数据总数加1，所以1的含义为累加1<br>##常用函数<br>####count（）<br>    count（字段）数量<br>    1.统计总数count(if(条件字段名=值,true,null))  count(if(sax=’男’,true,null)) 数量<br>    2.统计总数去重复值，count(DISTINCT 需要计算count的字段名,if(条件字段名=值,true,null))<br>    round（字段，需保留小数点后几位（2））保留小数点后两位<br>##去重（distinct）<br>    SELECT DISTINCT Company FROM Orders<br>##运算符（and和or）</p>
+<pre><code>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。
 
+如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。
+
+如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</code></pre><p>##排序（ORDER BY ）<br>    ORDER BY 语句用于根据指定的列对结果集进行排序。</p>
+<pre><code>ORDER BY 语句默认按照升序对记录进行排序。
+
+如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。
+
+按照字母顺序就是类型是char类型就行或者名字里面有字母</code></pre><p>##插入（insert into）语句<br>    INSERT INTO 表名称 VALUES (值1, 值2,….)</p>
+<pre><code>INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top<br>    TOP 子句用于规定要返回的记录的数目。</p>
+<pre><code>MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
+
+MySQL 语法
+SELECT column_name(s)
+FROM table_name
+LIMIT number例子
+
+    SELECT *
+    FROM Persons
+    LIMIT 5
+
+Oracle 语法
+SELECT column_name(s)
+FROM table_name
+WHERE ROWNUM &lt;= number例子
+
+    SELECT *
+    FROM Persons
+    WHERE ROWNUM &lt;= 5</code></pre>
       
 
       
