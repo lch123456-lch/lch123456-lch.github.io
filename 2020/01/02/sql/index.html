@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="超人昊bk">
 <meta property="og:description" content="toc: true sql语句更新（update）语句批量更新如果数据都是不同的可以用caseupdate student SET   name &#x3D;case id     name是要修改的字段                  when 1 THEN &amp;apos;李&amp;apos;                when 2 THEN &amp;apos;李1&amp;apos;                wh">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-03T09:09:57.378Z">
+<meta property="og:updated_time" content="2020-01-06T11:30:56.516Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="超人昊bk" type="application/atom+xml">
@@ -186,7 +186,7 @@ WHERE id IN (1,2,3);   </code></pre><p>####如果数据是相同的批量更新<
 <pre><code>INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top<br>    TOP 子句用于规定要返回的记录的数目。</p>
 <pre><code>MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
 
-MySQL 语法
+# MySQL 语法 #
 SELECT column_name(s)
 FROM table_name
 LIMIT number例子
@@ -195,14 +195,20 @@ LIMIT number例子
     FROM Persons
     LIMIT 5
 
-Oracle 语法
+# Oracle 语法 #
 SELECT column_name(s)
 FROM table_name
 WHERE ROWNUM &lt;= number例子
 
     SELECT *
     FROM Persons
-    WHERE ROWNUM &lt;= 5</code></pre>
+    WHERE ROWNUM &lt;= 5</code></pre><p>##like<br>    where 字段 like</p>
+<pre><code>like&apos;%%&apos;    迷糊查询
+like&apos;%__&apos;    以什么结尾
+like&apos;__%&apos;    以什么开头
+not like &apos;%%&apos; 不包含这个的    </code></pre><p>##通配符<br>    [charlist] 字符列中的任何单一字符<br>    WHERE City LIKE ‘[ALN]%’  以 “A” 或 “L” 或 “N” 开头的人：</p>
+<pre><code>[^charlist]或者[!charlist]
+WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
       
 
       
@@ -294,6 +300,15 @@ WHERE ROWNUM &lt;= number例子
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          excel小技巧
+        
+      </div>
+    </a>
   
   
     <a href="/2019/12/07/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/" id="article-nav-older" class="article-nav-link-wrap">

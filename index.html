@@ -129,6 +129,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-excel小技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/">excel小技巧</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="archive-article-date">
+  	<time datetime="2020-01-06T11:09:12.214Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###1.合并数据<br>    =a&amp;b</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-sql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -185,7 +251,7 @@ WHERE id IN (1,2,3);   </code></pre><p>####如果数据是相同的批量更新<
 <pre><code>INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top<br>    TOP 子句用于规定要返回的记录的数目。</p>
 <pre><code>MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
 
-MySQL 语法
+# MySQL 语法 #
 SELECT column_name(s)
 FROM table_name
 LIMIT number例子
@@ -194,14 +260,20 @@ LIMIT number例子
     FROM Persons
     LIMIT 5
 
-Oracle 语法
+# Oracle 语法 #
 SELECT column_name(s)
 FROM table_name
 WHERE ROWNUM &lt;= number例子
 
     SELECT *
     FROM Persons
-    WHERE ROWNUM &lt;= 5</code></pre>
+    WHERE ROWNUM &lt;= 5</code></pre><p>##like<br>    where 字段 like</p>
+<pre><code>like&apos;%%&apos;    迷糊查询
+like&apos;%__&apos;    以什么结尾
+like&apos;__%&apos;    以什么开头
+not like &apos;%%&apos; 不包含这个的    </code></pre><p>##通配符<br>    [charlist] 字符列中的任何单一字符<br>    WHERE City LIKE ‘[ALN]%’  以 “A” 或 “L” 或 “N” 开头的人：</p>
+<pre><code>[^charlist]或者[!charlist]
+WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
       
 
       
