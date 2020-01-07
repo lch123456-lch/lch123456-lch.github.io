@@ -8,18 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>复习资料 | 超人昊bk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的复习资料 ##Jsp&#x2F;servlet    jsp侧重于视图，servlet主要用于控制逻辑。    为什么说jsp本质是一个servlet    发现两点；    1：继承了HttpServlet    2.写了Servlet方法–调用了一个抽象方法###1、说一说Servlet生命周期    Servlet的生命周期分为三部分    初始化：Web容器加载servlet，调用init()方">
+  <meta name="description" content="##Jsp&#x2F;servlet    jsp侧重于视图，servlet主要用于控制逻辑。    为什么说jsp本质是一个servlet    发现两点；    1：继承了HttpServlet    2.写了Servlet方法–调用了一个抽象方法###1、说一说Servlet生命周期    Servlet的生命周期分为三部分    初始化：Web容器加载servlet，调用init()方法进行初始化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="复习资料">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99&#x2F;index.html">
 <meta property="og:site_name" content="超人昊bk">
-<meta property="og:description" content="我的复习资料 ##Jsp&#x2F;servlet    jsp侧重于视图，servlet主要用于控制逻辑。    为什么说jsp本质是一个servlet    发现两点；    1：继承了HttpServlet    2.写了Servlet方法–调用了一个抽象方法###1、说一说Servlet生命周期    Servlet的生命周期分为三部分    初始化：Web容器加载servlet，调用init()方">
+<meta property="og:description" content="##Jsp&#x2F;servlet    jsp侧重于视图，servlet主要用于控制逻辑。    为什么说jsp本质是一个servlet    发现两点；    1：继承了HttpServlet    2.写了Servlet方法–调用了一个抽象方法###1、说一说Servlet生命周期    Servlet的生命周期分为三部分    初始化：Web容器加载servlet，调用init()方法进行初始化。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;OSVDh4I.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;esLauKg.png">
-<meta property="og:updated_time" content="2020-01-07T01:03:46.226Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99&#x2F;jvm%E8%BF%90%E8%A1%8C%E5%86%85%E5%AD%98%E5%8C%BA.png">
+<meta property="og:updated_time" content="2020-01-07T01:25:20.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;OSVDh4I.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;07&#x2F;%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99&#x2F;jvm%E8%BF%90%E8%A1%8C%E5%86%85%E5%AD%98%E5%8C%BA.png">
   
     <link rel="alternative" href="/atom.xml" title="超人昊bk" type="application/atom+xml">
   
@@ -156,8 +155,7 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我的复习资料</p>
-<p>##Jsp/servlet<br>    jsp侧重于视图，servlet主要用于控制逻辑。<br>    为什么说jsp本质是一个servlet<br>    发现两点；<br>    1：继承了HttpServlet<br>    2.写了Servlet方法–调用了一个抽象方法<br>###1、说一说Servlet生命周期<br>    Servlet的生命周期分为三部分<br>    初始化：Web容器加载servlet，调用init()方法进行初始化。<br>    处理请求：当请求到达时，运行其service()方法。Service()会根据表单的请求类型调用相对doGet()方法或者是doPost()方法。<br>    销毁：当服务器关闭时，调用distroy()方法销毁servlet。<br>###2、get提交和post提交有何区别<br>    get一般用于从服务器上获取数据，post一般用于向服务器传送数据。<br>    get的请求参数是拼接在url后面，可以在浏览器地址栏看见，post是放在http包的包体中。<br>    get方法提交的数据只能是文本，大小不能超过1024个字节，而post不仅可以提交文本还有二进制文件。所以要上传文件，就使用post请求方式。<br>###3、jsp与servlet有什么区别<br>    jsp的本质就是一个servlet 他会被容器转化成servlet，在编译成class文件  调用jspService()处理请求。<br>    jsp注重的是页面展示     servlet注重的是流程控制和事务处理<br>###4、doGet与doPost方法的两个参数是什么<br>    HttpServletRequest：封装了与请求相关的信息</p>
+        <p>##Jsp/servlet<br>    jsp侧重于视图，servlet主要用于控制逻辑。<br>    为什么说jsp本质是一个servlet<br>    发现两点；<br>    1：继承了HttpServlet<br>    2.写了Servlet方法–调用了一个抽象方法<br>###1、说一说Servlet生命周期<br>    Servlet的生命周期分为三部分<br>    初始化：Web容器加载servlet，调用init()方法进行初始化。<br>    处理请求：当请求到达时，运行其service()方法。Service()会根据表单的请求类型调用相对doGet()方法或者是doPost()方法。<br>    销毁：当服务器关闭时，调用distroy()方法销毁servlet。<br>###2、get提交和post提交有何区别<br>    get一般用于从服务器上获取数据，post一般用于向服务器传送数据。<br>    get的请求参数是拼接在url后面，可以在浏览器地址栏看见，post是放在http包的包体中。<br>    get方法提交的数据只能是文本，大小不能超过1024个字节，而post不仅可以提交文本还有二进制文件。所以要上传文件，就使用post请求方式。<br>###3、jsp与servlet有什么区别<br>    jsp的本质就是一个servlet 他会被容器转化成servlet，在编译成class文件  调用jspService()处理请求。<br>    jsp注重的是页面展示     servlet注重的是流程控制和事务处理<br>###4、doGet与doPost方法的两个参数是什么<br>    HttpServletRequest：封装了与请求相关的信息</p>
 <pre><code>HttpServletResponse：封装了与响应相关的信息</code></pre><p>###5、request.getAttribute()和request.getParameter的区别？<br>    1.有setAttribute，没有setParameter方法<br>    2.getParameter获取到的值只能是字符串，不可以是对象，而getAttribute获取到的值是Object类型的。<br>    3.getParameter获取from表单传递过来的值；getAttribute只能获取使用setAttribute设置的值。<br>###6、jsp有哪些内置对象，作用是什么<br>    request：包含用户端请求的信息<br>    response：包含服务器传回客户端的响应信息<br>    session：与请求有关的会话期<br>    pageContext：管理网页属性<br>    application：服务器启动时创建，服务器关闭时停止，为多个应用程序保存信息<br>    out：向客户端输出数据<br>    config：servlet的架构部件<br>    page：指网页本身<br>    exception：针对错误页面才可使用<br>###7、四种会话跟踪技术作用域<br>    page：一个页面<br>    request：：一次请求</p>
 <pre><code>session：一次会话
 application：服务器从启动到停止。</code></pre><p>###8、JSP中动态INCLUDE和静态INCLUDE有什么区别<br>    （动态包含使用&lt;jsp:include page=””&gt;使用page属性实现。）<br>    （静态包含使用&lt;%@include file=””&gt;使用file属性实现。）<br>    Include指令用于把另外一个页面包含到当前页面中，在转换成servlet的时候包含进去的。<br>    动态include用动作实现，它总会检查所含文件中的变化，适合用于包含动态页面，并且可以带参数。<br>    静态include用伪码实现，不会检查所包含的文件变化，使用于包含静态页面<br>###9、forward和redirect的区别<br>    请求转发与重定向<br>    请求转发：服务器内部跳转，浏览器地址栏的地址不变，重定向：告诉浏览器，发送二次跳转。<br>    请求转发：可以共享request里面的数据，重定向：不能共享数据。<br>    请求转发：只能在同一个项目跳转，重定向：可以跨域访问。<br>    请求转发：效率高，重定向：效率低。<br>###10、 说出JSP的6个动作指令和作用？<br>    jsp:include：在页面被请求的时候引入一个静态或动态的文件。<br>    jsp:useBean：实力化一个对象。</p>
@@ -166,7 +164,7 @@ jsp:getProperty：获取对象的属性。
 jsp:forward：请求转发。</code></pre><p>###11、JSP的3种跳转方式<br>    response.sendRedirct()方法：重新发送请求。<br>    response.setHeader()方法：重新发送请求但可以设置等待的时间。<br>    &lt;jsp:forward page=”跳转的页面”/&gt;：请求转发，服务器的跳转。</p>
 <h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><pre><code>在请求到达servlet之前，执行过滤器，过滤器决定是否执行(可以进行权限控制)，可以提前设置一些参数(比如在执行action前设置统一字符集)。
 当你在执行一个方法，在这个方法前或方法后执行一些方法(防止重复提交)。</code></pre><p>###13、 谈谈Servlet监听器的作用<br>    对特定的事件进行监听，当产生这些事件的时候，会执行监听器的代码，分为生命周期监听器和数据变化监听器(统计在线人数(监听session)、网站的访问量(request))。</p>
-<p>###14、 请简要描述jstl<br>     JSP标准标签库（JSTL）是一个JSP标签集合，它封装了核心库<br>    c标签，fmt格式化标签，fn字符串处理标签，sql标签，xml标签。Jstl还提供了实现自定义标签功能，方便我们的页面控件编写。<br>###15、 如何现实servlet的单线程模式<br>     Jsp修改page指令   &lt;%@ page isThreadSafe=”false”%&gt;，将编译后的servlet实现SingleThreadModel接口。<br>###16、介绍el表达式<br>    EL表达式全名是Expression Language<br>    EL表达式一般操作的是作用域(page、request、session、application)中的属性，使用${标识符}.<br>###17、 tomcat如何调优<br>    对jvm的堆的最大值修改为可用内存的80%(修改catalina.bat的相关参数)。<br>    禁用DNS查询(直接使用IP地址访问)。<br>    修改最大线程连接数。<br>    设置超时机制。<br>###18、 tomcat部署的方式有几种<br>    1.将web项目文件拷贝到webapps目录中。<br>    2.在tomcat中的conf目录下修改server.xml文件，在host节点中添加<context>标签。并指向项目所在路径。<br>    3.在tomcat中conf\Catalina\localhost目录下添加一个xml文件 文件名可用随意取，并写入一个<context>标签，并指向项目所在路径。<br>    4.用tomcat在线后台管理器，一般tomcat都打开了，直接上传war就可以</p>
+<p>###14、 请简要描述jstl<br>     JSP标准标签库（JSTL）是一个JSP标签集合，它封装了核心库<br>    c标签，fmt格式化标签，fn字符串处理标签，sql标签，xml标签。Jstl还提供了实现自定义标签功能，方便我们的页面控件编写。<br>###15、 如何现实servlet的单线程模式<br>     Jsp修改page指令   &lt;%@ page isThreadSafe=”false”%&gt;，将编译后的servlet实现SingleThreadModel接口。<br>###16、介绍el表达式<br>    EL表达式全名是Expression Language<br>    EL表达式一般操作的是作用域(page、request、session、application)中的属性，使用${标识符}.<br>###17、 tomcat如何调优<br>    对jvm的堆的最大值修改为可用内存的80%(修改catalina.bat的相关参数)。<br>    禁用DNS查询(直接使用IP地址访问)。<br>    修改最大线程连接数。<br>    设置超时机制。<br>###18、 tomcat部署的方式有几种<br>    1.将web项目文件拷贝到webapps目录中。<br>    2.在tomcat中的conf目录下修改server.xml文件，在host节点中添加<context>标签。并指向项目所在路径。<br>    3.在tomcat中conf\Catalina\localhost目录下添加一个xml文件 文件名可用随意取，并写入一个<context>标签，并指向项目所在路径。<br>    4.用tomcat在线后台管理器，一般tomcat都打开了，直接上传war就可以</context></context></p>
 <p>##Spring<br>    IOC（原理工厂模式）<br>    Spring的本质是一个bean工厂(beanFactory)或者说bean容器，它按照我们的要求，生产我们需要的各种各样的bean，提供给我们使用。只是在生产bean的过程中，需要解决bean之间的依赖问题，才引入了依赖注入(DI)这种技术。也就是说依赖注入是beanFactory生产bean时为了解决bean之间的依赖的一种技术而已。<br>    那么我们为什么需要Spring框架来给我们提供这个beanFactory的功能呢？原因是一般我们认为是，可以将原来硬编码的依赖，通过Spring这个beanFactory这个工厂来注入依赖，也就是说原来只有依赖方和被依赖方，现在我们引入了第三方——spring这个beanFactory，由它来解决bean之间的依赖问题，达到了松耦合的效果；这个只是原因之一，还有一个更加重要的原因：在没有spring这个beanFactory之前，我们都是直接通过new来实例化各种对象，现在各种对象bean的生产都是通过beanFactory来实例化的，这样的话，spring这个beanFactory就可以在实例化bean的过程中，做一些小动作——在实例化bean的各个阶段进行一些额外的处理，也就是说beanFactory会在bean的生命周期的各个阶段中对bean进行各种管理，并且spring将这些阶段通过各种接口暴露给我们，让我们可以对bean进行各种处理，我们只要让bean实现对应的接口，那么spring就会在bean的生命周期调用我们实现的接口来处理该bean。<br>    AOP（原理代理设计模式）<br>    面向切面编程一般适用于横切逻辑的场合，比如：访问控制，事务监测，性能监测等。<br>    为对象设置一个代理对象，代理对象为一个方法提供可一个代理方法，当通过代理对象的方法调用原对象的方法，就可以在代理方法中添加新的功能，增强他的功能。<br>    理解</p>
 <pre><code>1、Spring实现了工厂模式的工厂类，这个类名为BeanFactory(接口)，
 在程序中通常用他的子类ApplicationContext。
@@ -267,7 +265,7 @@ public enum Singleton  {
 众所周知，单例模式是创建型模式，都会新建一个实例。那么一个重要的问题就是反序列化。当实例被写入到文件到反序列化成实例时，我们需要重写readResolve方法，以让实例唯一。
 private Object readResolve() throws ObjectStreamException{
         return singleton;}</code></pre><p>##反序列化<br>    序列化对象<br>    【1】、必须实现序列化接口 Serializable：Java.io.Serializable 接口。<br>    【2】、serialVersionUID：序列化的版本号，凡是实现 Serializable 接口的类都有一个静态的表示序列化版本标识符的变量。</p>
-<p>##Springmvc<br>    <img src="https://i.imgur.com/OSVDh4I.png" alt=""></p>
+<p>##Springmvc<br>    ！[springmvc.png]</p>
 <pre><code>架构流程
 1、  用户发送请求至前端控制器DispatcherServlet
 
@@ -335,9 +333,7 @@ background-size:contain;
 异常</code></pre><p>##Java中的异常有哪几类？分别怎么使用？<br>    Exception又包含了运行时异常(RuntimeException, 又叫非检查异常)和非运行时异常(又叫检查异常)<br>    (1) Error是程序无法处理了, 如果OutOfMemoryError、OutOfMemoryError等等, 这些异常发生时, java虚拟机一般会终止线程 .<br>    (2) 运行时异常都是RuntimeException类及其子类,如 NullPointerException、IndexOutOfBoundsException等, 这些异常是不检查的异常, 是在程序运行的时候可能会发生的, 所以程序可以捕捉, 也可以不捕捉. 这些错误一般是由程序的逻辑错误引起的, 程序应该从逻辑角度去尽量避免.<br>    (3) 检查异常是运行时异常以外的异常, 也是Exception及其子类, 这些异常从程序的角度来说是必须经过捕捉检查处理的, 否则不能通过编译. 如IOException、SQLException等<br>    在使用所有有可能为空的对象的时候先做是否为空的判断，为空可以打日志，然后RETURN掉，或者作其它处理，这个可能为空是有很多情况的，比如说数据库查询出错异常没抛到调用方法这来，或者初始化出异常，没有初始化成功导致对象为NULL，等等这种是有很多的，所以最好是养成多打日志的习惯，这样找问题会很简单</p>
 <pre><code>数组越界异常，先看哪里出错了，然后用判断条件来避免。
 if ( (pos &lt; 0) || (pos &gt; ARRAY_SIZE) ) {异常处理}</code></pre><p>##用Axure画的相关的原型图</p>
-<p>##怎么配置tomacat的端口号<br>    1.修改端口:<br>    在Tomcat的安装目录下的\conf目录下,打开server.xml,<br>    找到<br>    <Connector port="8080" protocol="HTTP/1.1"
-    connectionTimeout="20000"
-    redirectPort="8443"/><br>    将8080改为你想要的端口8081</p>
+<p>##怎么配置tomacat的端口号<br>    1.修改端口:<br>    在Tomcat的安装目录下的\conf目录下,打开server.xml,<br>    找到<br>    <Connector port="8080" protocol="HTTP/1.1" connectiontimeout="20000" redirectport="8443"><br>    将8080改为你想要的端口8081</Connector></p>
 <pre><code>2.映射路径:
 还是在server.xml配置文件中,
 在&lt;/host&gt;这个结束标签之前加上如下的配置信息:
@@ -350,7 +346,7 @@ docBase=&quot;e:\myApp&quot; /&gt;
 在server.xml中添加以下:
 &lt;Connector port=&quot;65535&quot; protocol=&quot;HTTP/1.1&quot;
 connectionTimeout=&quot;20000&quot; /&gt;
-Tomcat的端口号最大到65535.</code></pre><p>##Jvm<br>    <img src="https://i.imgur.com/esLauKg.png" alt=""><br>    1） 类装载器（ClassLoader）（用来装载.class文件）<br>    2） 执行引擎（执行字节码，或者执行本地方法）<br>    3） 运行时数据区（方法区、堆、虚拟机栈、程序计数器、本地方法栈）</p>
+Tomcat的端口号最大到65535.</code></pre><p>##Jvm<br>    <img src="/2019/12/07/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/jvm%E8%BF%90%E8%A1%8C%E5%86%85%E5%AD%98%E5%8C%BA.png" alt><br>    1） 类装载器（ClassLoader）（用来装载.class文件）<br>    2） 执行引擎（执行字节码，或者执行本地方法）<br>    3） 运行时数据区（方法区、堆、虚拟机栈、程序计数器、本地方法栈）</p>
 <pre><code>首先我们对运行时数据区中的5个区域进行分析：
 3. 运行时数据区：
 3.1 堆：
