@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sql | 超人昊bk</title>
+  <title>问题总结 | 超人昊bk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: true sql语句更新（update）语句批量更新如果数据都是不同的可以用caseupdate student SET   name &#x3D;case id     name是要修改的字段                  when 1 THEN &amp;apos;李&amp;apos;                when 2 THEN &amp;apos;李1&amp;apos;                wh">
+  <meta name="description" content="##Date.After（）和date.before（）区别    Date1.after(Date2),当Date1大于Date2时，返回TRUE，当小于等于时，返回false；    即Date2比Date1小的true&#x2F;false，当Date2日期比Date1小的时候为true，否则为false    Date1.before(Date2)，当Date1小于Date2时，返回TRUE，当大于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;02&#x2F;sql&#x2F;index.html">
+<meta property="og:title" content="问题总结">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;13&#x2F;%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="超人昊bk">
-<meta property="og:description" content="toc: true sql语句更新（update）语句批量更新如果数据都是不同的可以用caseupdate student SET   name &#x3D;case id     name是要修改的字段                  when 1 THEN &amp;apos;李&amp;apos;                when 2 THEN &amp;apos;李1&amp;apos;                wh">
+<meta property="og:description" content="##Date.After（）和date.before（）区别    Date1.after(Date2),当Date1大于Date2时，返回TRUE，当小于等于时，返回false；    即Date2比Date1小的true&#x2F;false，当Date2日期比Date1小的时候为true，否则为false    Date1.before(Date2)，当Date1小于Date2时，返回TRUE，当大于">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-13T11:09:25.422Z">
+<meta property="og:updated_time" content="2020-01-13T11:09:19.093Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="超人昊bk" type="application/atom+xml">
@@ -130,20 +130,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sql" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-问题总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      sql
+      问题总结
     </h1>
   
 
         
-        <a href="/2020/01/02/sql/" class="archive-article-date">
-  	<time datetime="2020-01-02T01:23:52.485Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+        <a href="/2020/01/13/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-01-13T11:02:25.920Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
 </a>
         
       </header>
@@ -153,95 +153,242 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true</p>
-<h1 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h1><h2 id="更新（update）语句"><a href="#更新（update）语句" class="headerlink" title="更新（update）语句"></a>更新（update）语句</h2><h3 id="批量更新"><a href="#批量更新" class="headerlink" title="批量更新"></a>批量更新</h3><h4 id="如果数据都是不同的可以用case"><a href="#如果数据都是不同的可以用case" class="headerlink" title="如果数据都是不同的可以用case"></a>如果数据都是不同的可以用case</h4><pre><code>update student SET  
-name =case id     name是要修改的字段     
-            when 1 THEN &apos;李&apos;   
-            when 2 THEN &apos;李1&apos;   
-            when 3 THEN &apos;李2&apos;   
-END,     
-sax = CASE id     ‘’是里面要加入字符串    
-            when 1 THEN &apos;男&apos;   
-            when 2 THEN &apos;女&apos;   
-            when 3 THEN &apos;男&apos;    
-END  
-WHERE id IN (1,2,3);  </code></pre><p>####如果数据是相同的批量更新</p>
-<pre><code>UPDATE t_summary_ent_plan    
-SET ent_name=&apos;祁阳海螺水泥有限责任公司&apos;,ent_code=691822520,city_code=4311,city_name=&apos;永州&apos;    
-where id IN (302,303,304,305,306);</code></pre><p>####关联更新</p>
-<pre><code>（1）update 表名1，表名2
-    set  字段名=值
-    where 条件and条件and  
+        <p>##Date.After（）和date.before（）区别<br>    Date1.after(Date2),当Date1大于Date2时，返回TRUE，当小于等于时，返回false；<br>    即Date2比Date1小的true/false，当Date2日期比Date1小的时候为true，否则为false<br>    Date1.before(Date2)，当Date1小于Date2时，返回TRUE，当大于等于时，返回false；<br>    如果业务数据存在相等的时候，而且相等时也需要做相应的业务判断或处理时，请注意。<br>    如果有这样的需求，在某个日期内的业务check，那么你需要使用：！Date1.after(Date2)<br>##resultType返回类型必须一致<br>##String、String.valueOf、toString 它们三者的区别总结<br>    1.String：毫无疑问，这种就是强转形式，简单方便，效率高。java程序员可能看到效率高或许有些激动，但是它有他的不好，那就是局限性。在java的世界里没有什么东西是没有缺点的，总有一些好的方面同时也有一些不好的。不好的就是，他只能是强转原本就是字符串的东西，如果原本不是字符串的话，那么就会报错。比如：<br>    Boolean boolean1 = true;<br>    String str3 = (String)boolean1;//这行代码会报错，编译不过<br>    String str4 = boolean1.toString();//正常<br>    String str5 = String.valueOf(boolean1);//正常<br>    通过上面的例子我们就很清晰的明白了，String强转的方式固然轻松，那么它是有很大的局限性的。在用的时候要谨慎。<br>    2.toString():在API文档中是这样说的，返回此对象本身（它已经是一个字符串了！！！）。按照它的意思就是说一般的对象或者参数都是有toString()的方法的，只是要注意在一个参数定义为int类型是就没有这个方法了。还有就是当参数为空的时候.toString()方法就会报出空指针异常，这是这个方法的不好的地方使用时需要仔细斟酌一下。比如：<br>    Object obj = getObject();<br>    Syystem.out.println(obj.toString());<br>     就如这上面的代码表示的一样，如果obj不为空，那么就能正常编译，那么如果obj取出来为空的话，那么就会报出空指针异常的。     3.最重要的角色出场了String.valueOf()：这个方法是静态的，直接通过String调用，可以说是完美，只是平时不习惯这样写而已，这样的实现避免了前面两个的不足和缺点。首先来看看他内部的实现机制：<br>    Public static String valueOf(Object obj){return (obj==null) ? “null” : obj.toString()};<br>     在内部就是做了为空的判断的，所以就不会报出空指针异常。</p>
+<pre><code>总结：
+　　这三者的使用，个人觉得应该使用String.valueOf()的方式。这样的使用安全可靠，不会带来异常。</code></pre><p>##Double类parseDouble()和valueOf()方法的区别<br>    数字类型的String字符串转换为浮点数通常采用parseDouble()和valueOf()方法，两者主要是存在以下两点区别。</p>
+<pre><code>区别一：参数区别
+Double.parseDouble(java.lang.String)的参数只能是String，如果参数改为double类型提示“The method parseDouble(String) in the type Double is not applicable for the arguments (double)”错误。
+Double.valueOf()的参数类型可以是浮点型或者是字符串均可。
 
-（2）update 表名1
-    leftjoin 表名2
-    on 条件
-    set 字段名=值
-    where 限定条件</code></pre><p>##查询（select）语句</p>
-<h3 id="限定查询"><a href="#限定查询" class="headerlink" title="限定查询"></a>限定查询</h3><p>####多个条件判断<br>    SELECT<br>    id,<br>    region_name,<br>    ent_name,<br>    statistics_date,<br>    statistics_cycle,<br>    round(sum(if(energy_type=’电’,energy_value,0)),2) elc_value,<br>    round(sum(if(energy_type=’电’,energy_value_tce,0)),2) elc_tce,<br>    round(sum(if(energy_type=’电’,energy_consume_rate,0)),2) elc_rate,<br>    round(sum(if(energy_type=’煤炭’,energy_value,0)),2) water_value,<br>    round(sum(if(energy_type=’煤炭’,energy_value_tce,0)),2) water_tce,<br>    round(sum(if(energy_type=’煤炭’,energy_consume_rate,0)),2) water_rate,<br>    round(sum(if(energy_type=’天然气’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’天然气’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’天然气’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’石油’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’石油’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’石油’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’其他’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’其他’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’其他’,energy_consume_rate,0)),2) gas_rate,<br>    data_upload_stability_rate<br>    FROM<br>        t_energy_dynamics_monitor<br>    GROUP BY ent_name</p>
-<pre><code>这个group by后面需要跟着上面需要查找的内容，所有字段</code></pre><p>####sum（if）</p>
-<pre><code>sum(if(条件,列值,0))
-注解：sum是求和函数，条件为真时，执行列值（字段名）求和也就是累加，条件为假时为0求和（当然还是0）
-1.单条件判断格式，sum(if(条件字段名=值,需要计算sum的字段名,0))
-2.多条件判断格式，sum(if(条件字段名&gt;值 AND 条件字段名&gt;值 AND 条件字段名=值,1,0))
-注解：多条件判断格式整体含义为，计算满足条件的数据总数，如果满足条件，那么数据总数加1，所以1的含义为累加1</code></pre><p>##常用函数<br>####count（）<br>    count（字段）数量<br>    1.统计总数count(if(条件字段名=值,true,null))  count(if(sax=’男’,true,null)) 数量<br>    2.统计总数去重复值，count(DISTINCT 需要计算count的字段名,if(条件字段名=值,true,null))<br>    round（字段，需保留小数点后几位（2））保留小数点后两位</p>
-<p>##去重（distinct）</p>
-<pre><code>SELECT DISTINCT Company FROM Orders</code></pre><p>##运算符（and和or）</p>
-<pre><code>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。
+String pi = &quot;3.1415926&quot;;
+double floatOrDouble = 3.1415926;
+double parseDouble = Double.parseDouble(pi);
+//提示错误 Change type of&quot;floatOrDoubleP&quot; to &quot;String&quot;
+//double floatOrDoubleP = Double.parseDouble(floatOrDouble);
+System.out.println(parseDouble);
+//System.out.println(floatOrDoubleP);
+Double valueOf = Double.valueOf(pi);
+Double floatOrDoubleV = Double.valueOf(floatOrDouble);
+System.out.println(valueOf);
+System.out.println(floatOrDoubleV);
+控制台输出结果：
 
-如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。
+3.1415926
+3.1415926
+3.1415926
+区别二：返回类型
+Double.parseDouble(java.lang.String)把数字类型的字符串转换成double类型
+Double.valueOf()方把数字类型的字符串转换成Double类型
 
-如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</code></pre><p>##排序（ORDER BY ）</p>
-<pre><code>ORDER BY 语句用于根据指定的列对结果集进行排序。
+Double.parseDouble()方法的源码：
+public static double parseDouble(String s) throws NumberFormatException {
+        return FloatingDecimal.readJavaFormatString(s).doubleValue();
+}
+Double.valueOf()方法的源码：
+public static Double valueOf(String s) throws NumberFormatException {
+    // new Double()
+        return new Double(FloatingDecimal.readJavaFormatString(s).doubleValue());
+}
+通过格式化小数点位数两者结果相同，可以看出除参数和返回类型外两者区别不大。
+DecimalFormat df = new DecimalFormat(&quot;0.00&quot;);
+System.out.println(df.format(Double.parseDouble(pi)));
+System.out.println(df.format(Double.valueOf(pi)));
+控制台输出结果：
+3.14
+3.14
+Integer工具类也是很相似的，但是Integer的valueOf内部实现的时候会有一些不同。
+Integer.valueOf()方法的源码：
+public static Integer valueOf(int i) {
+    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}</code></pre><p>##Calendar.getInstance() 获取时间<br>    使用Calendar.getInstance()不仅能获取当前的时间，还能指定需要获取的时间点，在项目应用中达到定时的作用。<br>    Calendar.getInstance()是获取一个Calendar对象并可以进行时间的计算，时区的指定<br>    new Date()是创建了一个date对象，默认是utc格式的。<br>    Calendar常用的方法的返回结果：</p>
+<pre><code>public class CalendarText {
 
-ORDER BY 语句默认按照升序对记录进行排序。
+Calendar calendar = null;
 
-如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。
+@Before
+public void test() {
+    calendar = Calendar.getInstance();
+}
 
-按照字母顺序就是类型是char类型就行或者名字里面有字母</code></pre><p>##插入（insert into）语句</p>
-<pre><code>INSERT INTO 表名称 VALUES (值1, 值2,....)
+// 基本用法，获取年月日时分秒星期
+@Test
+public void test1() {
 
-INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top</p>
-<pre><code>TOP 子句用于规定要返回的记录的数目。
+    // 获取年
+    int year = calendar.get(Calendar.YEAR);
+    // 获取月，这里需要需要月份的范围为0~11，因此获取月份的时候需要+1才是当前月份值
+    int month = calendar.get(Calendar.MONTH) + 1;
+    // 获取日
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
+    // 获取时
+    int hour = calendar.get(Calendar.HOUR);
+    // int hour = calendar.get(Calendar.HOUR_OF_DAY); // 24小时表示
+    // 获取分
+    int minute = calendar.get(Calendar.MINUTE);
+    // 获取秒
+    int second = calendar.get(Calendar.SECOND);
+    // 星期，英语国家星期从星期日开始计算
+    int weekday = calendar.get(Calendar.DAY_OF_WEEK);
 
-MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
+    //现在是2019年1月14日3时22分35秒星期2,
+    //发现获得星期有问题，中国星期一是开始，国外是星期日
+    weekday = weekday - 1 &gt; 0 ? weekday - 1 : 7;
 
-# MySQL 语法 #
+    System.out.println(&quot;现在是&quot; + year + &quot;年&quot; + month + &quot;月&quot; + day + &quot;日&quot;
+     + hour + &quot;时&quot; + minute + &quot;分&quot; + second + &quot;秒&quot; + &quot;星期&quot; + weekday);
+}
 
-SELECT column_name(s)
-FROM table_name
-LIMIT number例子
+// 一年后的今天
+@Test
+public void test2() {
 
-    SELECT *
-    FROM Persons
-    LIMIT 5
+    // 同理换成下个月的今天calendar.add(Calendar.MONTH, 1);
+    calendar.add(Calendar.YEAR, 1);
+    // 获取年
+    int year = calendar.get(Calendar.YEAR)
+    // 获取月
+    int month = calendar.get(Calendar.MONTH) + 1;
+    // 获取日
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-# Oracle 语法 #
-SELECT column_name(s)
-FROM table_name
-WHERE ROWNUM &lt;= number例子
+    System.out.println(&quot;一年后的今天：&quot; + year + &quot;年&quot; + month + &quot;月&quot; 
+    + day + &quot;日&quot;);
+}
 
-    SELECT *
-    FROM Persons
-    WHERE ROWNUM &lt;= 5</code></pre><p>##like</p>
-<pre><code>where 字段 like
+// 获取任意一个月的最后一天
+@Test
+public void test3() {
 
-like&apos;%%&apos;    迷糊查询
-like&apos;%__&apos;    以什么结尾
-like&apos;__%&apos;    以什么开头
-not like &apos;%%&apos; 不包含这个的    </code></pre><p>##通配符</p>
-<pre><code>[charlist] 字符列中的任何单一字符 
-WHERE City LIKE &apos;[ALN]%&apos;  以 &quot;A&quot; 或 &quot;L&quot; 或 &quot;N&quot; 开头的人：
+    // 假设求6月的最后一天
+    int currentMonth = 6;
+    // 先求出7月份的第一天，实际中这里6为外部传递进来的currentMonth变量
+    // 1
+    calendar.set(calendar.get(Calendar.YEAR), currentMonth, 1);
+    calendar.add(Calendar.DATE, -1)
+    // 获取日
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-[^charlist]或者[!charlist]
-WHERE City LIKE &apos;[!ALN]%&apos;</code></pre><p>##Oracle to_char(参数,’FM990.00’)函数<br>    select to_char(参数,’FM990.00’) from 表格<br>    刚看到FM990.00确实不知道什么意思，通过网上资料，知道了<br>    0表示：如果参数(double或者float类型)存在数字就显示数字，不存在数字就显示0<br>    9表示：如果参数(double或者float类型)存在数字就显示数字，不存在数字就显示空格<br>    FM表示：将9带来的空格删除<br>    拓展：所以上面例子就表示左边最小为1位(个位)，最大3位(百位)，有两位小数，当然格式就不仅仅是FM990.00，格式就是无限个，可以为FM999999.99或者FM9999990.00等等<br>    上面是oracle的做法，mysql可以用format函数：<br>    select to_char(参数,’FM999999.900’) from 表格<br>    …，可以有多种格式，这里只要知道这种做法就可以<br>##Oracle数据库提供的截取字符串函数是：Substr<br>substr(stirng1,strat,length);截取功能；<br>解析一下：string1是你要截取的字符串，strat是要开始截取的位置，length是你要截取多少个字符串。<br>##Nvl<br>    NVL函数的格式如下：NVL(expr1,expr2)<br>    含义是：如果oracle第一个参数为空那么显示第二个参数的值，如果第一个参数的值不为空，则显示第一个参数本来的值。</p>
-<pre><code>NVL2函数的格式如下：NVL2(expr1,expr2, expr3)
-含义是：如果该函数的第一个参数为空那么显示第二个参数的值，如果第一个参数的值不为空，则显示第三个参数的值。SQL&gt; select ename,NVL2(comm,-1,1) from emp;
+    System.out.println(&quot;6月份的最后一天为&quot; + day + &quot;号&quot;);
+}
 
-NULLIF函数
-NULLIF(exp1,expr2)函数的作用是如果exp1和exp2相等则返回空(NULL)，否则返回第一个值。</code></pre><p>##oracle decode函数使用方法<br>decode()函数是ORACLE PL/SQL是功能强大的函数之一，目前还只有ORACLE公司的SQL提供了此函数，其他数据库厂商的SQL实现还没有此功能。</p>
-<p>1、比较大小<br>　　select decode(sign(变量1-变量2),-1,变量1,变量2) from dual; –取较小值<br>　　sign()函数根据某个值是0、正数还是负数，分别返回0、1、-1<br>2.DECODE(value,if1,then1,if2,then2,if3,then3,…,else)<br>等于就是value（if(){}else if(){}else ）</p>
+// 设置日期
+@Test
+public void test4() {
 
+    calendar.set(Calendar.YEAR, 2000);
+    System.out.println(&quot;现在是&quot; + calendar.get(Calendar.YEAR) + &quot;年&quot;);
+
+    calendar.set(2008, 8, 8);
+    // 获取年
+    int year = calendar.get(Calendar.YEAR);
+    // 获取月
+    int month = calendar.get(Calendar.MONTH);
+    // 获取日
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+    System.out.println(&quot;现在是&quot; + year + &quot;年&quot; + month + &quot;月&quot; + day + &quot;日&quot;);
+}
+}
+获取指定时间点：
+//获得当天0点时间
+public static int getTimesmorning(){
+Calendar cal = Calendar.getInstance();
+cal.set(Calendar.HOUR_OF_DAY, 0);
+cal.set(Calendar.SECOND, 0);
+cal.set(Calendar.MINUTE, 0);
+cal.set(Calendar.MILLISECOND, 0);
+return (int) (cal.getTimeInMillis()/1000);
+}
+
+//获得当天24点时间
+public static int getTimesnight(){
+Calendar cal = Calendar.getInstance();
+cal.set(Calendar.HOUR_OF_DAY, 24);
+cal.set(Calendar.SECOND, 0);
+cal.set(Calendar.MINUTE, 0);
+cal.set(Calendar.MILLISECOND, 0);
+return (int) (cal.getTimeInMillis()/1000);
+}
+
+//获得本周一0点时间
+public static int getTimesWeekmorning(){
+Calendar cal = Calendar.getInstance();
+cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONDAY), cal.get(Calendar.DAY_OF_MONTH), 0, 0,0);
+cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+return (int) (cal.getTimeInMillis()/1000);
+}</code></pre><p>##SimpleDateFormat的用法：</p>
+<pre><code>//设置日期格式   HH:mm:ss中的HH大写为24小时制。HH和hh的差别是前者为24小时制，后者为12小时制
+SimpleDateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+            // new Date()为获取当前系统时间
+String dateTime=df.format(new Date());
+
+yyyy：年
+MM：月
+dd：日
+hh：1~12小时制(1-12)
+HH：24小时制(0-23)
+mm：分
+ss：秒
+S：毫秒
+E：星期几
+D：一年中的第几天
+F：一月中的第几个星期(会把这个月总共过的天数除以7)
+w：一年中的第几个星期
+W：一月中的第几星期(会根据实际情况来算)
+a：上下午标识
+k：和HH差不多，表示一天24小时制(1-24)。
+K：和hh差不多，表示一天12小时制(0-11)。
+z：表示时区 </code></pre><p>##通用的时间转换格式<br>           //创建一个时间对象<br>    Date date = new Date();<br>    //创建一个calendar<br>            Calendar calendar = Calendar.getInstance();<br>            calendar.setTime(date);<br>    //0代表当天<br>            calendar.add(calendar.DATE, 0);// 如果把0修改为-1就代表昨天<br>            date = calendar.getTime();<br>    //转换格式<br>            SimpleDateFormat format = new SimpleDateFormat(“yyyy-MM-dd”);<br>            String riqi_ = format.format(date);<br>    //分割年，月  用到的是 string的subString和split<br>            int year = Integer.parseInt(riqi_.substring(0, 4));<br>            int yue = Integer.parseInt((riqi_.split(“-“))[1]);<br>            String year0 = year + “”;<br>            String year1 = (year - 1) + “”;</p>
+<p>##BigDecimal是更为准确的精确小数点位的</p>
+<pre><code>//获得本周日24点时间
+public static int getTimesWeeknight(){
+Calendar cal = Calendar.getInstance();
+cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONDAY), cal.get(Calendar.DAY_OF_MONTH), 0, 0,0);
+cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+return (int) ((cal.getTime().getTime()+ (7 * 24 * 60 * 60 * 1000))/1000);
+}
+
+//获得本月第一天0点时间
+public static int getTimesMonthmorning(){
+Calendar cal = Calendar.getInstance();
+cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONDAY), cal.get(Calendar.DAY_OF_MONTH), 0, 0,0);
+cal.set(Calendar.DAY_OF_MONTH,cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+return (int) (cal.getTimeInMillis()/1000);
+}
+
+//获得本月最后一天24点时间
+public static int getTimesMonthnight(){
+Calendar cal = Calendar.getInstance();
+cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONDAY),cal.get(Calendar.DAY_OF_MONTH), 0, 0,0);
+cal.set(Calendar.DAY_OF_MONTH,cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+cal.set(Calendar.HOUR_OF_DAY, 24);
+return (int) (cal.getTimeInMillis()/1000);
+}</code></pre><p>##parseInt()<br>    static int parseInt(String s)<br>    static int parseInt(String s, int radix)<br>    parseInt(String s): 返回用十进制参数表示的整数值。<br>    parseInt(int i): 使用指定基数的字符串参数表示的整数 (基数可以是 10, 2, 8, 或 16 等进制数) 。</p>
+<p>##Java中DecimalFormat用法详解<br>    我们经常要将数字进行格式化，比如取2位小数，这是最常见的。Java 提供DecimalFormat类</p>
+<pre><code>doublepi=3.1415927;　//圆周率 
+
+　　　　//取一位整数 
+　　　　System.out.println(newDecimalFormat(&quot;0&quot;).format(pi));　　　//3 
+　　　　//取一位整数和两位小数 
+　　　　System.out.println(newDecimalFormat(&quot;0.00&quot;).format(pi));　//3.14 
+　　　　//取两位整数和三位小数，整数不足部分以0填补。 
+　　　　System.out.println(new DecimalFormat(&quot;00.000&quot;).format(pi));// 03.142 
+　　　　//取所有整数部分 
+　　　　System.out.println(newDecimalFormat(&quot;#&quot;).format(pi));　　　//3 
+　　　　//以百分比方式计数，并取两位小数 
+　　　　System.out.println(new DecimalFormat(&quot;#.##%&quot;).format(pi));　//314.16% 
+
+　　 　longc=299792458;　　//光速 
+　　　　//显示为科学计数法，并取五位小数 
+　　　　System.out.println(newDecimalFormat(&quot;#.#####E0&quot;).format(c));　//2.99792E8 
+　　　　//显示为两位整数的科学计数法，并取四位小数 
+　　　　System.out.println(newDecimalFormat(&quot;00.####E0&quot;).format(c));　//29.9792E7 
+　　　　//每三位以逗号进行分隔。 
+　　　　System.out.println(newDecimalFormat(&quot;,###&quot;).format(c));　　　//299,792,458 
+　　　　//将格式嵌入文本 
+　　　　System.out.println(newDecimalFormat(&quot;光速大小为每秒,###米。&quot;).format(c)); </code></pre>
       
 
       
@@ -320,7 +467,7 @@ NULLIF(exp1,expr2)函数的作用是如果exp1和exp2相等则返回空(NULL)，
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/02/sql/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/13/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,18 +481,9 @@ NULLIF(exp1,expr2)函数的作用是如果exp1和exp2相等则返回空(NULL)，
   
 <nav id="article-nav">
   
-    <a href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          excel小技巧
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/07/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">复习资料</div>
+    <a href="/2020/01/13/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%992/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">复习资料2</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -372,7 +510,7 @@ NULLIF(exp1,expr2)函数的作用是如果exp1和exp2相等则返回空(NULL)，
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sql语句"><span class="toc-number">1.</span> <span class="toc-text">sql语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#更新（update）语句"><span class="toc-number">1.1.</span> <span class="toc-text">更新（update）语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#批量更新"><span class="toc-number">1.1.1.</span> <span class="toc-text">批量更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如果数据都是不同的可以用case"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">如果数据都是不同的可以用case</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限定查询"><span class="toc-number">1.1.2.</span> <span class="toc-text">限定查询</span></a></li></ol></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
