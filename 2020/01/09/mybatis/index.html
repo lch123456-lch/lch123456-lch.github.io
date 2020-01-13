@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sql | 超人昊bk</title>
+  <title>mybatis | 超人昊bk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="toc: true sql语句更新（update）语句批量更新如果数据都是不同的可以用caseupdate student SET   name &#x3D;case id     name是要修改的字段                  when 1 THEN &amp;apos;李&amp;apos;                when 2 THEN &amp;apos;李1&amp;apos;                wh">
+  <meta name="description" content="###{}和${}的区别 1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &amp;quot;111&amp;quot;, 如果传入的值是id，则解析成的sql为order by &amp;quot;id&amp;quot;.  2. $将传入的数据直接显示生成在sql中。如：order by $use">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;02&#x2F;sql&#x2F;index.html">
+<meta property="og:title" content="mybatis">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;09&#x2F;mybatis&#x2F;index.html">
 <meta property="og:site_name" content="超人昊bk">
-<meta property="og:description" content="toc: true sql语句更新（update）语句批量更新如果数据都是不同的可以用caseupdate student SET   name &#x3D;case id     name是要修改的字段                  when 1 THEN &amp;apos;李&amp;apos;                when 2 THEN &amp;apos;李1&amp;apos;                wh">
+<meta property="og:description" content="###{}和${}的区别 1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &amp;quot;111&amp;quot;, 如果传入的值是id，则解析成的sql为order by &amp;quot;id&amp;quot;.  2. $将传入的数据直接显示生成在sql中。如：order by $use">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-13T02:05:44.762Z">
+<meta property="og:updated_time" content="2020-01-09T00:31:29.980Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="超人昊bk" type="application/atom+xml">
@@ -130,20 +130,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sql" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mybatis" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      sql
+      mybatis
     </h1>
   
 
         
-        <a href="/2020/01/02/sql/" class="archive-article-date">
-  	<time datetime="2020-01-02T01:23:52.485Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+        <a href="/2020/01/09/mybatis/" class="archive-article-date">
+  	<time datetime="2020-01-09T00:24:21.622Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
 </a>
         
       </header>
@@ -153,88 +153,42 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>toc: true</p>
-<h1 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h1><h2 id="更新（update）语句"><a href="#更新（update）语句" class="headerlink" title="更新（update）语句"></a>更新（update）语句</h2><h3 id="批量更新"><a href="#批量更新" class="headerlink" title="批量更新"></a>批量更新</h3><h4 id="如果数据都是不同的可以用case"><a href="#如果数据都是不同的可以用case" class="headerlink" title="如果数据都是不同的可以用case"></a>如果数据都是不同的可以用case</h4><pre><code>update student SET  
-name =case id     name是要修改的字段     
-            when 1 THEN &apos;李&apos;   
-            when 2 THEN &apos;李1&apos;   
-            when 3 THEN &apos;李2&apos;   
-END,     
-sax = CASE id     ‘’是里面要加入字符串    
-            when 1 THEN &apos;男&apos;   
-            when 2 THEN &apos;女&apos;   
-            when 3 THEN &apos;男&apos;    
-END  
-WHERE id IN (1,2,3);  </code></pre><p>####如果数据是相同的批量更新</p>
-<pre><code>UPDATE t_summary_ent_plan    
-SET ent_name=&apos;祁阳海螺水泥有限责任公司&apos;,ent_code=691822520,city_code=4311,city_name=&apos;永州&apos;    
-where id IN (302,303,304,305,306);</code></pre><p>####关联更新</p>
-<pre><code>（1）update 表名1，表名2
-    set  字段名=值
-    where 条件and条件and  
+        <p>###{}和${}的区别</p>
+<pre><code>1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &quot;111&quot;, 如果传入的值是id，则解析成的sql为order by &quot;id&quot;.
 
-（2）update 表名1
-    leftjoin 表名2
-    on 条件
-    set 字段名=值
-    where 限定条件</code></pre><p>##查询（select）语句</p>
-<h3 id="限定查询"><a href="#限定查询" class="headerlink" title="限定查询"></a>限定查询</h3><p>####多个条件判断<br>    SELECT<br>    id,<br>    region_name,<br>    ent_name,<br>    statistics_date,<br>    statistics_cycle,<br>    round(sum(if(energy_type=’电’,energy_value,0)),2) elc_value,<br>    round(sum(if(energy_type=’电’,energy_value_tce,0)),2) elc_tce,<br>    round(sum(if(energy_type=’电’,energy_consume_rate,0)),2) elc_rate,<br>    round(sum(if(energy_type=’煤炭’,energy_value,0)),2) water_value,<br>    round(sum(if(energy_type=’煤炭’,energy_value_tce,0)),2) water_tce,<br>    round(sum(if(energy_type=’煤炭’,energy_consume_rate,0)),2) water_rate,<br>    round(sum(if(energy_type=’天然气’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’天然气’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’天然气’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’石油’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’石油’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’石油’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’其他’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’其他’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’其他’,energy_consume_rate,0)),2) gas_rate,<br>    data_upload_stability_rate<br>    FROM<br>        t_energy_dynamics_monitor<br>    GROUP BY ent_name</p>
-<pre><code>这个group by后面需要跟着上面需要查找的内容，所有字段</code></pre><p>####sum（if）</p>
-<pre><code>sum(if(条件,列值,0))
-注解：sum是求和函数，条件为真时，执行列值（字段名）求和也就是累加，条件为假时为0求和（当然还是0）
-1.单条件判断格式，sum(if(条件字段名=值,需要计算sum的字段名,0))
-2.多条件判断格式，sum(if(条件字段名&gt;值 AND 条件字段名&gt;值 AND 条件字段名=值,1,0))
-注解：多条件判断格式整体含义为，计算满足条件的数据总数，如果满足条件，那么数据总数加1，所以1的含义为累加1</code></pre><p>##常用函数<br>####count（）<br>    count（字段）数量<br>    1.统计总数count(if(条件字段名=值,true,null))  count(if(sax=’男’,true,null)) 数量<br>    2.统计总数去重复值，count(DISTINCT 需要计算count的字段名,if(条件字段名=值,true,null))<br>    round（字段，需保留小数点后几位（2））保留小数点后两位</p>
-<p>##去重（distinct）</p>
-<pre><code>SELECT DISTINCT Company FROM Orders</code></pre><p>##运算符（and和or）</p>
-<pre><code>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。
+2. $将传入的数据直接显示生成在sql中。如：order by $user_id$，如果传入的值是111,那么解析成sql时的值为order by user_id,  如果传入的值是id，则解析成的sql为order by id.
+　　
+3. #方式能够很大程度防止sql注入。
+　　
+4.$方式无法防止Sql注入。
 
-如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。
+5.$方式一般用于传入数据库对象，例如传入表名.
+　　
+6.一般能用#的就别用$.
 
-如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</code></pre><p>##排序（ORDER BY ）</p>
-<pre><code>ORDER BY 语句用于根据指定的列对结果集进行排序。
+MyBatis排序时使用order by 动态参数时需要注意，用$而不是#
 
-ORDER BY 语句默认按照升序对记录进行排序。
 
-如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。
 
-按照字母顺序就是类型是char类型就行或者名字里面有字母</code></pre><p>##插入（insert into）语句</p>
-<pre><code>INSERT INTO 表名称 VALUES (值1, 值2,....)
+***两者都可以在mybatis中用在输入映射
 
-INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top</p>
-<pre><code>TOP 子句用于规定要返回的记录的数目。
+{}是预编译处理，
+${}是字符串替换。
 
-MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
+mybatis在处理#{}时，会将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值；
+mybatis在处理 $ { } 时，就是把 ${ } 替换成变量的值，完成的是简单的字符串拼接。
 
-# MySQL 语法 #
+补充：在mybatis中使用#{}可以防止sql注入，提高系统安全性。
 
-SELECT column_name(s)
-FROM table_name
-LIMIT number例子
+sql注入是什么：
+例如：用户输入的账号密码在代码中是以字符串拼接的方式生成查询语句的，这样用户输入的内容很容易改变我们的原查询代码，这就相当一一个数据库注入问题。
+我们验证密码和账号的时候，如果用户在输入密码的时候 输入 or 1=1；那不管他输入的密码是什么都可以通过。
 
-    SELECT *
-    FROM Persons
-    LIMIT 5
+两者都可以在mybatis中用在输入映射
 
-# Oracle 语法 #
-SELECT column_name(s)
-FROM table_name
-WHERE ROWNUM &lt;= number例子
 
-    SELECT *
-    FROM Persons
-    WHERE ROWNUM &lt;= 5</code></pre><p>##like</p>
-<pre><code>where 字段 like
-
-like&apos;%%&apos;    迷糊查询
-like&apos;%__&apos;    以什么结尾
-like&apos;__%&apos;    以什么开头
-not like &apos;%%&apos; 不包含这个的    </code></pre><p>##通配符</p>
-<pre><code>[charlist] 字符列中的任何单一字符 
-WHERE City LIKE &apos;[ALN]%&apos;  以 &quot;A&quot; 或 &quot;L&quot; 或 &quot;N&quot; 开头的人：
-
-[^charlist]或者[!charlist]
-WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
+（1）$符号一般用来当作占位符，常使用Linux脚本的人应该对此有更深的体会吧。既然是占位符，当然就是被用来替换的。知道了这点就能很容易区分$和#，从而不容易记错了。
+（2）预编译的机制。预编译是提前对SQL语句进行预编译，而其后注入的参数将不会再进行SQL编译。我们知道，SQL注入是发生在编译的过程中，因为恶意注入了某些特殊字符，最后被编译成了恶意的执行操作。而预编译机制则可以很好的防止SQL注入。</code></pre>
       
 
       
@@ -313,7 +267,7 @@ WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/02/sql/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/09/mybatis/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +281,9 @@ WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
   
 <nav id="article-nav">
   
-    <a href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          excel小技巧
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/07/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">复习资料</div>
+    <a href="/2020/01/06/excel%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">excel小技巧</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -365,7 +310,7 @@ WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sql语句"><span class="toc-number">1.</span> <span class="toc-text">sql语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#更新（update）语句"><span class="toc-number">1.1.</span> <span class="toc-text">更新（update）语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#批量更新"><span class="toc-number">1.1.1.</span> <span class="toc-text">批量更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如果数据都是不同的可以用case"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">如果数据都是不同的可以用case</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限定查询"><span class="toc-number">1.1.2.</span> <span class="toc-text">限定查询</span></a></li></ol></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>

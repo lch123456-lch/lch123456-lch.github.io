@@ -129,6 +129,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mybatis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/09/mybatis/">mybatis</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/09/mybatis/" class="archive-article-date">
+  	<time datetime="2020-01-09T00:24:21.622Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+		
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###{}和${}的区别</p>
+<pre><code>1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &quot;111&quot;, 如果传入的值是id，则解析成的sql为order by &quot;id&quot;.
+
+2. $将传入的数据直接显示生成在sql中。如：order by $user_id$，如果传入的值是111,那么解析成sql时的值为order by user_id,  如果传入的值是id，则解析成的sql为order by id.
+　　
+3. #方式能够很大程度防止sql注入。
+　　
+4.$方式无法防止Sql注入。
+
+5.$方式一般用于传入数据库对象，例如传入表名.
+　　
+6.一般能用#的就别用$.
+
+MyBatis排序时使用order by 动态参数时需要注意，用$而不是#
+
+
+
+***两者都可以在mybatis中用在输入映射
+
+{}是预编译处理，
+${}是字符串替换。
+
+mybatis在处理#{}时，会将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值；
+mybatis在处理 $ { } 时，就是把 ${ } 替换成变量的值，完成的是简单的字符串拼接。
+
+补充：在mybatis中使用#{}可以防止sql注入，提高系统安全性。
+
+sql注入是什么：
+例如：用户输入的账号密码在代码中是以字符串拼接的方式生成查询语句的，这样用户输入的内容很容易改变我们的原查询代码，这就相当一一个数据库注入问题。
+我们验证密码和账号的时候，如果用户在输入密码的时候 输入 or 1=1；那不管他输入的密码是什么都可以通过。
+
+两者都可以在mybatis中用在输入映射
+
+
+（1）$符号一般用来当作占位符，常使用Linux脚本的人应该对此有更深的体会吧。既然是占位符，当然就是被用来替换的。知道了这点就能很容易区分$和#，从而不容易记错了。
+（2）预编译的机制。预编译是提前对SQL语句进行预编译，而其后注入的参数将不会再进行SQL编译。我们知道，SQL注入是发生在编译的过程中，因为恶意注入了某些特殊字符，最后被编译成了恶意的执行操作。而预编译机制则可以很好的防止SQL注入。</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/09/mybatis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-excel小技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -230,28 +330,49 @@ sax = CASE id     ‘’是里面要加入字符串
             when 2 THEN &apos;女&apos;   
             when 3 THEN &apos;男&apos;    
 END  
-WHERE id IN (1,2,3);   </code></pre><p>####如果数据是相同的批量更新<br>    UPDATE t_summary_ent_plan<br>    SET ent_name=’祁阳海螺水泥有限责任公司’,ent_code=691822520,city_code=4311,city_name=’永州’<br>    where id IN (302,303,304,305,306);<br>####关联更新<br>    （1）update 表名1，表名2<br>        set  字段名=值<br>        where 条件and条件and  </p>
-<pre><code>（2）update 表名1
+WHERE id IN (1,2,3);  </code></pre><p>####如果数据是相同的批量更新</p>
+<pre><code>UPDATE t_summary_ent_plan    
+SET ent_name=&apos;祁阳海螺水泥有限责任公司&apos;,ent_code=691822520,city_code=4311,city_name=&apos;永州&apos;    
+where id IN (302,303,304,305,306);</code></pre><p>####关联更新</p>
+<pre><code>（1）update 表名1，表名2
+    set  字段名=值
+    where 条件and条件and  
+
+（2）update 表名1
     leftjoin 表名2
     on 条件
     set 字段名=值
     where 限定条件</code></pre><p>##查询（select）语句</p>
 <h3 id="限定查询"><a href="#限定查询" class="headerlink" title="限定查询"></a>限定查询</h3><p>####多个条件判断<br>    SELECT<br>    id,<br>    region_name,<br>    ent_name,<br>    statistics_date,<br>    statistics_cycle,<br>    round(sum(if(energy_type=’电’,energy_value,0)),2) elc_value,<br>    round(sum(if(energy_type=’电’,energy_value_tce,0)),2) elc_tce,<br>    round(sum(if(energy_type=’电’,energy_consume_rate,0)),2) elc_rate,<br>    round(sum(if(energy_type=’煤炭’,energy_value,0)),2) water_value,<br>    round(sum(if(energy_type=’煤炭’,energy_value_tce,0)),2) water_tce,<br>    round(sum(if(energy_type=’煤炭’,energy_consume_rate,0)),2) water_rate,<br>    round(sum(if(energy_type=’天然气’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’天然气’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’天然气’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’石油’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’石油’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’石油’,energy_consume_rate,0)),2) gas_rate,<br>    round(sum(if(energy_type=’其他’,energy_value,0)),2) gas_value,<br>    round(sum(if(energy_type=’其他’,energy_value_tce,0)),2) gas_tce,<br>    round(sum(if(energy_type=’其他’,energy_consume_rate,0)),2) gas_rate,<br>    data_upload_stability_rate<br>    FROM<br>        t_energy_dynamics_monitor<br>    GROUP BY ent_name</p>
-<pre><code>这个group by后面需要跟着上面需要查找的内容，所有字段</code></pre><p>####sum（if）<br>    sum(if(条件,列值,0))<br>    注解：sum是求和函数，条件为真时，执行列值（字段名）求和也就是累加，条件为假时为0求和（当然还是0）<br>    1.单条件判断格式，sum(if(条件字段名=值,需要计算sum的字段名,0))<br>    2.多条件判断格式，sum(if(条件字段名&gt;值 AND 条件字段名&gt;值 AND 条件字段名=值,1,0))<br>    注解：多条件判断格式整体含义为，计算满足条件的数据总数，如果满足条件，那么数据总数加1，所以1的含义为累加1<br>##常用函数<br>####count（）<br>    count（字段）数量<br>    1.统计总数count(if(条件字段名=值,true,null))  count(if(sax=’男’,true,null)) 数量<br>    2.统计总数去重复值，count(DISTINCT 需要计算count的字段名,if(条件字段名=值,true,null))<br>    round（字段，需保留小数点后几位（2））保留小数点后两位<br>##去重（distinct）<br>    SELECT DISTINCT Company FROM Orders<br>##运算符（and和or）</p>
+<pre><code>这个group by后面需要跟着上面需要查找的内容，所有字段</code></pre><p>####sum（if）</p>
+<pre><code>sum(if(条件,列值,0))
+注解：sum是求和函数，条件为真时，执行列值（字段名）求和也就是累加，条件为假时为0求和（当然还是0）
+1.单条件判断格式，sum(if(条件字段名=值,需要计算sum的字段名,0))
+2.多条件判断格式，sum(if(条件字段名&gt;值 AND 条件字段名&gt;值 AND 条件字段名=值,1,0))
+注解：多条件判断格式整体含义为，计算满足条件的数据总数，如果满足条件，那么数据总数加1，所以1的含义为累加1</code></pre><p>##常用函数<br>####count（）<br>    count（字段）数量<br>    1.统计总数count(if(条件字段名=值,true,null))  count(if(sax=’男’,true,null)) 数量<br>    2.统计总数去重复值，count(DISTINCT 需要计算count的字段名,if(条件字段名=值,true,null))<br>    round（字段，需保留小数点后几位（2））保留小数点后两位</p>
+<p>##去重（distinct）</p>
+<pre><code>SELECT DISTINCT Company FROM Orders</code></pre><p>##运算符（and和or）</p>
 <pre><code>AND 和 OR 可在 WHERE 子语句中把两个或多个条件结合起来。
 
 如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。
 
-如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</code></pre><p>##排序（ORDER BY ）<br>    ORDER BY 语句用于根据指定的列对结果集进行排序。</p>
-<pre><code>ORDER BY 语句默认按照升序对记录进行排序。
+如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</code></pre><p>##排序（ORDER BY ）</p>
+<pre><code>ORDER BY 语句用于根据指定的列对结果集进行排序。
+
+ORDER BY 语句默认按照升序对记录进行排序。
 
 如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。
 
-按照字母顺序就是类型是char类型就行或者名字里面有字母</code></pre><p>##插入（insert into）语句<br>    INSERT INTO 表名称 VALUES (值1, 值2,….)</p>
-<pre><code>INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top<br>    TOP 子句用于规定要返回的记录的数目。</p>
-<pre><code>MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
+按照字母顺序就是类型是char类型就行或者名字里面有字母</code></pre><p>##插入（insert into）语句</p>
+<pre><code>INSERT INTO 表名称 VALUES (值1, 值2,....)
+
+INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code></pre><p>##top</p>
+<pre><code>TOP 子句用于规定要返回的记录的数目。
+
+MySQL 和 Oracle 中的 SQL SELECT TOP 是等价的
 
 # MySQL 语法 #
+
 SELECT column_name(s)
 FROM table_name
 LIMIT number例子
@@ -267,12 +388,17 @@ WHERE ROWNUM &lt;= number例子
 
     SELECT *
     FROM Persons
-    WHERE ROWNUM &lt;= 5</code></pre><p>##like<br>    where 字段 like</p>
-<pre><code>like&apos;%%&apos;    迷糊查询
+    WHERE ROWNUM &lt;= 5</code></pre><p>##like</p>
+<pre><code>where 字段 like
+
+like&apos;%%&apos;    迷糊查询
 like&apos;%__&apos;    以什么结尾
 like&apos;__%&apos;    以什么开头
-not like &apos;%%&apos; 不包含这个的    </code></pre><p>##通配符<br>    [charlist] 字符列中的任何单一字符<br>    WHERE City LIKE ‘[ALN]%’  以 “A” 或 “L” 或 “N” 开头的人：</p>
-<pre><code>[^charlist]或者[!charlist]
+not like &apos;%%&apos; 不包含这个的    </code></pre><p>##通配符</p>
+<pre><code>[charlist] 字符列中的任何单一字符 
+WHERE City LIKE &apos;[ALN]%&apos;  以 &quot;A&quot; 或 &quot;L&quot; 或 &quot;N&quot; 开头的人：
+
+[^charlist]或者[!charlist]
 WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
       
 
@@ -338,18 +464,81 @@ WHERE City LIKE &apos;[!ALN]%&apos;</code></pre>
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##Jsp/servlet<br>    jsp侧重于视图，servlet主要用于控制逻辑。<br>    为什么说jsp本质是一个servlet<br>    发现两点；<br>    1：继承了HttpServlet<br>    2.写了Servlet方法–调用了一个抽象方法<br>###1、说一说Servlet生命周期<br>    Servlet的生命周期分为三部分<br>    初始化：Web容器加载servlet，调用init()方法进行初始化。<br>    处理请求：当请求到达时，运行其service()方法。Service()会根据表单的请求类型调用相对doGet()方法或者是doPost()方法。<br>    销毁：当服务器关闭时，调用distroy()方法销毁servlet。<br>###2、get提交和post提交有何区别<br>    get一般用于从服务器上获取数据，post一般用于向服务器传送数据。<br>    get的请求参数是拼接在url后面，可以在浏览器地址栏看见，post是放在http包的包体中。<br>    get方法提交的数据只能是文本，大小不能超过1024个字节，而post不仅可以提交文本还有二进制文件。所以要上传文件，就使用post请求方式。<br>###3、jsp与servlet有什么区别<br>    jsp的本质就是一个servlet 他会被容器转化成servlet，在编译成class文件  调用jspService()处理请求。<br>    jsp注重的是页面展示     servlet注重的是流程控制和事务处理<br>###4、doGet与doPost方法的两个参数是什么<br>    HttpServletRequest：封装了与请求相关的信息</p>
-<pre><code>HttpServletResponse：封装了与响应相关的信息</code></pre><p>###5、request.getAttribute()和request.getParameter的区别？<br>    1.有setAttribute，没有setParameter方法<br>    2.getParameter获取到的值只能是字符串，不可以是对象，而getAttribute获取到的值是Object类型的。<br>    3.getParameter获取from表单传递过来的值；getAttribute只能获取使用setAttribute设置的值。<br>###6、jsp有哪些内置对象，作用是什么<br>    request：包含用户端请求的信息<br>    response：包含服务器传回客户端的响应信息<br>    session：与请求有关的会话期<br>    pageContext：管理网页属性<br>    application：服务器启动时创建，服务器关闭时停止，为多个应用程序保存信息<br>    out：向客户端输出数据<br>    config：servlet的架构部件<br>    page：指网页本身<br>    exception：针对错误页面才可使用<br>###7、四种会话跟踪技术作用域<br>    page：一个页面<br>    request：：一次请求</p>
-<pre><code>session：一次会话
-application：服务器从启动到停止。</code></pre><p>###8、JSP中动态INCLUDE和静态INCLUDE有什么区别<br>    （动态包含使用&lt;jsp:include page=””&gt;使用page属性实现。）<br>    （静态包含使用&lt;%@include file=””&gt;使用file属性实现。）<br>    Include指令用于把另外一个页面包含到当前页面中，在转换成servlet的时候包含进去的。<br>    动态include用动作实现，它总会检查所含文件中的变化，适合用于包含动态页面，并且可以带参数。<br>    静态include用伪码实现，不会检查所包含的文件变化，使用于包含静态页面<br>###9、forward和redirect的区别<br>    请求转发与重定向<br>    请求转发：服务器内部跳转，浏览器地址栏的地址不变，重定向：告诉浏览器，发送二次跳转。<br>    请求转发：可以共享request里面的数据，重定向：不能共享数据。<br>    请求转发：只能在同一个项目跳转，重定向：可以跨域访问。<br>    请求转发：效率高，重定向：效率低。<br>###10、 说出JSP的6个动作指令和作用？<br>    jsp:include：在页面被请求的时候引入一个静态或动态的文件。<br>    jsp:useBean：实力化一个对象。</p>
-<pre><code>jsp:setProperty：设置对象的属性。
+        <p>##Jsp/servlet</p>
+<pre><code>jsp侧重于视图，servlet主要用于控制逻辑。
+为什么说jsp本质是一个servlet
+发现两点； 
+1：继承了HttpServlet  
+2.写了Servlet方法–调用了一个抽象方法 </code></pre><p>###1、说一说Servlet生命周期</p>
+<pre><code>Servlet的生命周期分为三部分
+初始化：Web容器加载servlet，调用init()方法进行初始化。
+处理请求：当请求到达时，运行其service()方法。Service()会根据表单的请求类型调用相对doGet()方法或者是doPost()方法。
+销毁：当服务器关闭时，调用distroy()方法销毁servlet。</code></pre><p>###2、get提交和post提交有何区别</p>
+<pre><code>get一般用于从服务器上获取数据，post一般用于向服务器传送数据。
+get的请求参数是拼接在url后面，可以在浏览器地址栏看见，post是放在http包的包体中。
+get方法提交的数据只能是文本，大小不能超过1024个字节，而post不仅可以提交文本还有二进制文件。所以要上传文件，就使用post请求方式。</code></pre><p>###3、jsp与servlet有什么区别</p>
+<pre><code>jsp的本质就是一个servlet 他会被容器转化成servlet，在编译成class文件  调用jspService()处理请求。
+jsp注重的是页面展示     servlet注重的是流程控制和事务处理</code></pre><p>###4、doGet与doPost方法的两个参数是什么</p>
+<pre><code>HttpServletRequest：封装了与请求相关的信息
+
+HttpServletResponse：封装了与响应相关的信息</code></pre><p>###5、request.getAttribute()和request.getParameter的区别？</p>
+<pre><code>1.有setAttribute，没有setParameter方法 
+2.getParameter获取到的值只能是字符串，不可以是对象，而getAttribute获取到的值是Object类型的。
+3.getParameter获取from表单传递过来的值；getAttribute只能获取使用setAttribute设置的值。</code></pre><p>###6、jsp有哪些内置对象，作用是什么</p>
+<pre><code>request：包含用户端请求的信息
+response：包含服务器传回客户端的响应信息
+session：与请求有关的会话期
+pageContext：管理网页属性
+application：服务器启动时创建，服务器关闭时停止，为多个应用程序保存信息
+out：向客户端输出数据
+config：servlet的架构部件
+page：指网页本身
+exception：针对错误页面才可使用</code></pre><p>###7、四种会话跟踪技术作用域</p>
+<pre><code>page：一个页面
+request：：一次请求
+
+session：一次会话
+application：服务器从启动到停止。</code></pre><p>###8、JSP中动态INCLUDE和静态INCLUDE有什么区别</p>
+<pre><code>（动态包含使用&lt;jsp:include page=””&gt;使用page属性实现。）
+（静态包含使用&lt;%@include file=””&gt;使用file属性实现。）
+Include指令用于把另外一个页面包含到当前页面中，在转换成servlet的时候包含进去的。
+动态include用动作实现，它总会检查所含文件中的变化，适合用于包含动态页面，并且可以带参数。
+静态include用伪码实现，不会检查所包含的文件变化，使用于包含静态页面</code></pre><p>###9、forward和redirect的区别<br>    请求转发与重定向<br>    请求转发：服务器内部跳转，浏览器地址栏的地址不变，重定向：告诉浏览器，发送二次跳转。<br>    请求转发：可以共享request里面的数据，重定向：不能共享数据。<br>    请求转发：只能在同一个项目跳转，重定向：可以跨域访问。<br>    请求转发：效率高，重定向：效率低。</p>
+<p>###10、 说出JSP的6个动作指令和作用？</p>
+<pre><code>jsp:include：在页面被请求的时候引入一个静态或动态的文件。
+jsp:useBean：实力化一个对象。
+
+jsp:setProperty：设置对象的属性。
 jsp:getProperty：获取对象的属性。
-jsp:forward：请求转发。</code></pre><p>###11、JSP的3种跳转方式<br>    response.sendRedirct()方法：重新发送请求。<br>    response.setHeader()方法：重新发送请求但可以设置等待的时间。<br>    &lt;jsp:forward page=”跳转的页面”/&gt;：请求转发，服务器的跳转。</p>
-<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><pre><code>在请求到达servlet之前，执行过滤器，过滤器决定是否执行(可以进行权限控制)，可以提前设置一些参数(比如在执行action前设置统一字符集)。
-当你在执行一个方法，在这个方法前或方法后执行一些方法(防止重复提交)。</code></pre><p>###13、 谈谈Servlet监听器的作用<br>    对特定的事件进行监听，当产生这些事件的时候，会执行监听器的代码，分为生命周期监听器和数据变化监听器(统计在线人数(监听session)、网站的访问量(request))。</p>
-<p>###14、 请简要描述jstl<br>     JSP标准标签库（JSTL）是一个JSP标签集合，它封装了核心库<br>    c标签，fmt格式化标签，fn字符串处理标签，sql标签，xml标签。Jstl还提供了实现自定义标签功能，方便我们的页面控件编写。<br>###15、 如何现实servlet的单线程模式<br>     Jsp修改page指令   &lt;%@ page isThreadSafe=”false”%&gt;，将编译后的servlet实现SingleThreadModel接口。<br>###16、介绍el表达式<br>    EL表达式全名是Expression Language<br>    EL表达式一般操作的是作用域(page、request、session、application)中的属性，使用${标识符}.<br>###17、 tomcat如何调优<br>    对jvm的堆的最大值修改为可用内存的80%(修改catalina.bat的相关参数)。<br>    禁用DNS查询(直接使用IP地址访问)。<br>    修改最大线程连接数。<br>    设置超时机制。<br>###18、 tomcat部署的方式有几种<br>    1.将web项目文件拷贝到webapps目录中。<br>    2.在tomcat中的conf目录下修改server.xml文件，在host节点中添加<context>标签。并指向项目所在路径。<br>    3.在tomcat中conf\Catalina\localhost目录下添加一个xml文件 文件名可用随意取，并写入一个<context>标签，并指向项目所在路径。<br>    4.用tomcat在线后台管理器，一般tomcat都打开了，直接上传war就可以</context></context></p>
-<p>##Spring<br>    IOC（原理工厂模式）<br>    Spring的本质是一个bean工厂(beanFactory)或者说bean容器，它按照我们的要求，生产我们需要的各种各样的bean，提供给我们使用。只是在生产bean的过程中，需要解决bean之间的依赖问题，才引入了依赖注入(DI)这种技术。也就是说依赖注入是beanFactory生产bean时为了解决bean之间的依赖的一种技术而已。<br>    那么我们为什么需要Spring框架来给我们提供这个beanFactory的功能呢？原因是一般我们认为是，可以将原来硬编码的依赖，通过Spring这个beanFactory这个工厂来注入依赖，也就是说原来只有依赖方和被依赖方，现在我们引入了第三方——spring这个beanFactory，由它来解决bean之间的依赖问题，达到了松耦合的效果；这个只是原因之一，还有一个更加重要的原因：在没有spring这个beanFactory之前，我们都是直接通过new来实例化各种对象，现在各种对象bean的生产都是通过beanFactory来实例化的，这样的话，spring这个beanFactory就可以在实例化bean的过程中，做一些小动作——在实例化bean的各个阶段进行一些额外的处理，也就是说beanFactory会在bean的生命周期的各个阶段中对bean进行各种管理，并且spring将这些阶段通过各种接口暴露给我们，让我们可以对bean进行各种处理，我们只要让bean实现对应的接口，那么spring就会在bean的生命周期调用我们实现的接口来处理该bean。<br>    AOP（原理代理设计模式）<br>    面向切面编程一般适用于横切逻辑的场合，比如：访问控制，事务监测，性能监测等。<br>    为对象设置一个代理对象，代理对象为一个方法提供可一个代理方法，当通过代理对象的方法调用原对象的方法，就可以在代理方法中添加新的功能，增强他的功能。<br>    理解</p>
-<pre><code>1、Spring实现了工厂模式的工厂类，这个类名为BeanFactory(接口)，
+jsp:forward：请求转发。</code></pre><p>###11、JSP的3种跳转方式</p>
+<pre><code>response.sendRedirct()方法：重新发送请求。
+response.setHeader()方法：重新发送请求但可以设置等待的时间。
+&lt;jsp:forward page=”跳转的页面”/&gt;：请求转发，服务器的跳转。</code></pre><h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><pre><code>在请求到达servlet之前，执行过滤器，过滤器决定是否执行(可以进行权限控制)，可以提前设置一些参数(比如在执行action前设置统一字符集)。
+当你在执行一个方法，在这个方法前或方法后执行一些方法(防止重复提交)。</code></pre><p>###13、 谈谈Servlet监听器的作用</p>
+<pre><code>对特定的事件进行监听，当产生这些事件的时候，会执行监听器的代码，分为生命周期监听器和数据变化监听器(统计在线人数(监听session)、网站的访问量(request))。</code></pre><p>###14、 请简要描述jstl</p>
+<pre><code> JSP标准标签库（JSTL）是一个JSP标签集合，它封装了核心库
+c标签，fmt格式化标签，fn字符串处理标签，sql标签，xml标签。Jstl还提供了实现自定义标签功能，方便我们的页面控件编写。</code></pre><p>###15、 如何现实servlet的单线程模式</p>
+<pre><code>Jsp修改page指令   &lt;%@ page isThreadSafe=&quot;false&quot;%&gt;，将编译后的servlet实现SingleThreadModel接口。</code></pre><p>###16、介绍el表达式</p>
+<pre><code>EL表达式全名是Expression Language
+EL表达式一般操作的是作用域(page、request、session、application)中的属性，使用${标识符}.</code></pre><p>###17、 tomcat如何调优</p>
+<pre><code>对jvm的堆的最大值修改为可用内存的80%(修改catalina.bat的相关参数)。
+禁用DNS查询(直接使用IP地址访问)。
+修改最大线程连接数。
+设置超时机制。</code></pre><p>###18、 tomcat部署的方式有几种</p>
+<pre><code>1.将web项目文件拷贝到webapps目录中。
+2.在tomcat中的conf目录下修改server.xml文件，在host节点中添加&lt;context&gt;标签。并指向项目所在路径。
+3.在tomcat中conf\Catalina\localhost目录下添加一个xml文件 文件名可用随意取，并写入一个&lt;context&gt;标签，并指向项目所在路径。
+4.用tomcat在线后台管理器，一般tomcat都打开了，直接上传war就可以</code></pre><p>##Spring</p>
+<pre><code>IOC（原理工厂模式）
+Spring的本质是一个bean工厂(beanFactory)或者说bean容器，它按照我们的要求，生产我们需要的各种各样的bean，提供给我们使用。只是在生产bean的过程中，需要解决bean之间的依赖问题，才引入了依赖注入(DI)这种技术。也就是说依赖注入是beanFactory生产bean时为了解决bean之间的依赖的一种技术而已。
+那么我们为什么需要Spring框架来给我们提供这个beanFactory的功能呢？原因是一般我们认为是，可以将原来硬编码的依赖，通过Spring这个beanFactory这个工厂来注入依赖，也就是说原来只有依赖方和被依赖方，现在我们引入了第三方——spring这个beanFactory，由它来解决bean之间的依赖问题，达到了松耦合的效果；这个只是原因之一，还有一个更加重要的原因：在没有spring这个beanFactory之前，我们都是直接通过new来实例化各种对象，现在各种对象bean的生产都是通过beanFactory来实例化的，这样的话，spring这个beanFactory就可以在实例化bean的过程中，做一些小动作——在实例化bean的各个阶段进行一些额外的处理，也就是说beanFactory会在bean的生命周期的各个阶段中对bean进行各种管理，并且spring将这些阶段通过各种接口暴露给我们，让我们可以对bean进行各种处理，我们只要让bean实现对应的接口，那么spring就会在bean的生命周期调用我们实现的接口来处理该bean。
+AOP（原理代理设计模式）
+面向切面编程一般适用于横切逻辑的场合，比如：访问控制，事务监测，性能监测等。
+为对象设置一个代理对象，代理对象为一个方法提供可一个代理方法，当通过代理对象的方法调用原对象的方法，就可以在代理方法中添加新的功能，增强他的功能。
+理解
+
+
+1、Spring实现了工厂模式的工厂类，这个类名为BeanFactory(接口)，
 在程序中通常用他的子类ApplicationContext。
 Spring相当于一个大的工厂类，在其配置文件中通过&lt;bean&gt;元素配置用于
 创建实例对象的类名和实例对象的属性。
@@ -365,8 +554,16 @@ Spring 的优势
 声明式事务管理（基于切面和惯例）
 方便集成其他框架（如MyBatis、Hibernate）
 降低 Java 开发难度
-Spring 框架中包括了 J2EE 三层的每一层的解决方案（一站式）</code></pre><p>##反射<br>    JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。<br>    与Java反射相关的类如下：<br>    类名    用途<br>    Class类    代表类的实体，在运行的Java应用程序中表示类和接口<br>    Field类    代表类的成员变量（成员变量也称为类的属性）<br>    Method类    代表类的方法<br>    Constructor类    代表类的构造方法</p>
-<pre><code>⑥反射
+Spring 框架中包括了 J2EE 三层的每一层的解决方案（一站式）</code></pre><p>##反射</p>
+<pre><code>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。
+与Java反射相关的类如下：
+类名    用途
+Class类    代表类的实体，在运行的Java应用程序中表示类和接口
+Field类    代表类的成员变量（成员变量也称为类的属性）
+Method类    代表类的方法
+Constructor类    代表类的构造方法
+
+⑥反射
 ①获取class
 ②获取构造方法
 ③获取类的成员方法
@@ -447,9 +644,15 @@ public enum Singleton  {
 在以上所有的单例模式中，推荐静态内部类单例模式。主要是非常直观，即保证线程安全又保证唯一性。
 众所周知，单例模式是创建型模式，都会新建一个实例。那么一个重要的问题就是反序列化。当实例被写入到文件到反序列化成实例时，我们需要重写readResolve方法，以让实例唯一。
 private Object readResolve() throws ObjectStreamException{
-        return singleton;}</code></pre><p>##反序列化<br>    序列化对象<br>    【1】、必须实现序列化接口 Serializable：Java.io.Serializable 接口。<br>    【2】、serialVersionUID：序列化的版本号，凡是实现 Serializable 接口的类都有一个静态的表示序列化版本标识符的变量。</p>
-<p>##Springmvc<br>    ！[springmvc.png]</p>
-<pre><code>架构流程
+        return singleton;}</code></pre><p>##反序列化</p>
+<pre><code>序列化对象
+【1】、必须实现序列化接口 Serializable：Java.io.Serializable 接口。
+【2】、serialVersionUID：序列化的版本号，凡是实现 Serializable 接口的类都有一个静态的表示序列化版本标识符的变量。</code></pre><p>##Springmvc</p>
+<pre><code>！[springmvc.png]
+
+
+
+架构流程
 1、  用户发送请求至前端控制器DispatcherServlet
 
 2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。
@@ -470,8 +673,11 @@ private Object readResolve() throws ObjectStreamException{
 
 10、DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）。
 
-11、DispatcherServlet响应用户</code></pre><p>##Springmvc各个注解的作用<br>    1、@Controller    @service<br>    标记一个类是Controller</p>
-<pre><code>2、@RequestMapping
+11、DispatcherServlet响应用户</code></pre><p>##Springmvc各个注解的作用</p>
+<pre><code>1、@Controller    @service
+标记一个类是Controller
+
+2、@RequestMapping
 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。
 3、@Resource和@Autowired
 @Resource和@Autowired都是做bean的注入时使用，其实@Resource并不是Spring的注解，它的包是javax.annotation.Resource，需要导入，但是Spring支持该注解的注入。
@@ -489,8 +695,44 @@ private Object readResolve() throws ObjectStreamException{
 9、@Repository
 用于注解dao层，在daoImpl类上面注解。
 Mybatis
-数据持久层框架，内部封装了jdbc，它支持定制化 SQL、存储过程以及高级映射，可以使用简单的 XML 或注解来配置和映射原生信息</code></pre><p>##Hadoop<br>    概念<br>    就是一个大数据解决方案。套分布式系统基础架构。 核心内容包含 hdfs 和 mapreduce。hadoop2.0 以后引入 yarn.<br>    hdfs 是提供数据存储的，mapreduce 是方便数据计算的。<br>    1、HDFS写入数据过程分析<br>    2、HDFS读取文件过程分析<br>    3、HDFS容错机制：故障类型及监测方法<br>    4、HDFS容错机制：读写容错方法<br>    5、HDFS容错机制：数据节点（DN）失效策略<br>    6、HDFS备份容错规则<br>##ZooKeeper<br>    它是一个为分布式应用提供一致性服务的软件<br>    ZooKeeper的基本运转流程：<br>    1、选举Leader。<br>    2、同步数据。<br>    3、选举Leader过程中算法有很多，但要达到的选举标准是一致的。<br>    4、Leader要具有最高的执行ID，类似root权限。<br>    5、集群中大多数的机器得到响应并接受选出的Leader。<br>    网站流量统计是改进网站服务的重要手段之一，通过获取用户在网站的行为数据，比如点击一个链接，进行分析,得到有价值的信息。<br>    主要分析的数据是访问量 也叫 点击量，独立访客数，一天之内会话的总的数量，跳出率，新增独立访客数等等。<br>    主要是网页埋点，日志收集，数据清洗，离线分析，利用sqoop从hive中导出数据到mysql。<br>    1.日志收集使用flume配置agent文件然后写到hdfs里面<br>    a.在日志服务器应用中导入Log4jAppernder相关开发包<br>    b.配置log4j配置文件，实现发送日志给flume<br>    c.在日志服务器的LogServlet中，通过log4j来发送日志<br>    2.数据清洗<br>    a清洗目标<br>    只保留需要的字段<br>    将会话信息拆分<br>    b创建外部分区表管理已经在HDFS的流量数据<br>    c增加flux的分区信息<br>    创建数据清洗表dataclear<br>    从zebra表中导入数据到dataclear表，在这个过程中完成数据清洗<br>    3.数据处理<br>    1.利用Hive实现业务指标的计算<br>    2.将计算结果存入统计表<br>    4.数据分析</p>
-<pre><code>会计网校
+数据持久层框架，内部封装了jdbc，它支持定制化 SQL、存储过程以及高级映射，可以使用简单的 XML 或注解来配置和映射原生信息</code></pre><p>##Hadoop</p>
+<pre><code>概念 
+就是一个大数据解决方案。套分布式系统基础架构。 核心内容包含 hdfs 和 mapreduce。hadoop2.0 以后引入 yarn. 
+hdfs 是提供数据存储的，mapreduce 是方便数据计算的。 
+1、HDFS写入数据过程分析
+2、HDFS读取文件过程分析
+3、HDFS容错机制：故障类型及监测方法
+4、HDFS容错机制：读写容错方法
+5、HDFS容错机制：数据节点（DN）失效策略
+6、HDFS备份容错规则</code></pre><p>##ZooKeeper</p>
+<pre><code>它是一个为分布式应用提供一致性服务的软件
+ZooKeeper的基本运转流程：
+1、选举Leader。
+2、同步数据。
+3、选举Leader过程中算法有很多，但要达到的选举标准是一致的。
+4、Leader要具有最高的执行ID，类似root权限。
+5、集群中大多数的机器得到响应并接受选出的Leader。
+网站流量统计是改进网站服务的重要手段之一，通过获取用户在网站的行为数据，比如点击一个链接，进行分析,得到有价值的信息。
+主要分析的数据是访问量 也叫 点击量，独立访客数，一天之内会话的总的数量，跳出率，新增独立访客数等等。
+主要是网页埋点，日志收集，数据清洗，离线分析，利用sqoop从hive中导出数据到mysql。
+1.日志收集使用flume配置agent文件然后写到hdfs里面
+a.在日志服务器应用中导入Log4jAppernder相关开发包
+b.配置log4j配置文件，实现发送日志给flume
+c.在日志服务器的LogServlet中，通过log4j来发送日志
+2.数据清洗
+a清洗目标
+只保留需要的字段
+将会话信息拆分
+b创建外部分区表管理已经在HDFS的流量数据
+c增加flux的分区信息
+创建数据清洗表dataclear
+从zebra表中导入数据到dataclear表，在这个过程中完成数据清洗
+3.数据处理
+1.利用Hive实现业务指标的计算
+2.将计算结果存入统计表
+4.数据分析
+
+会计网校
 学员管理，商品管理，运营管理，内容管理，考试管理，用户管理，系统管理，活动管理
 1.批量导入功能：先下载excel表格的模板，然后里面写入学员的信息，然后进行存储。
 2.批量复制课次功能：先批量选中，然后进行选择相应的课程，然后进行复制。主要是写了一个插件来协助完成
@@ -502,9 +744,19 @@ Qrcode
 主要是生成公司员工要签署的一系列的合同模板，例如入职，离职，续约，实习生协议等等
 1.在ui页面切换的时候，就得先找到原来的页面，然后对jsp进行修改，然后修改标题
 background-size:contain;  
-2.在修改bug那个问题就是先了解平台的系统管理的系统资源管理和菜单管理的各个资源，发现有个菜单的资源都是首页的资源，然后修改了资源就好了</code></pre><p>##Python<br>    1.爬虫的基本流程<br>    发起请求<br>    通过HTTP库向目标站点发起请求，也就是发送一个Request，请求可以包含额外的header等信息，等待服务器响应。<br>    获取响应内容<br>    如果服务器能正常响应，会得到一个Response，Response的内容便是所要获取的页面内容，类型可能是HTML,Json字符串，二进制数据（图片或者视频）等类型<br>    解析内容<br>    得到的内容可能是HTML,可以用正则表达式，页面解析库进行解析，可能是Json,可以直接转换为Json对象解析，可能是二进制数据，可以做保存或者进一步的处理<br>    保存数据<br>    保存形式多样，可以存为文本，也可以保存到数据库，或者保存特定格式的文件</p>
-<p>##Spring Boot<br>    Spring Boot 是所有基于 Spring 开发的项目的起点。Spring Boot 的设计是为了让你尽可能快的跑起来 Spring 应用程序并且尽可能减少你的配置文件。简单来说就是SpringBoot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合了所有的jar包，spring boot整合了所有的框架（不知道这样比喻是否合适）。</p>
-<pre><code>2.2、SpringBoot四个主要特性
+2.在修改bug那个问题就是先了解平台的系统管理的系统资源管理和菜单管理的各个资源，发现有个菜单的资源都是首页的资源，然后修改了资源就好了</code></pre><p>##Python</p>
+<pre><code>1.爬虫的基本流程
+发起请求
+通过HTTP库向目标站点发起请求，也就是发送一个Request，请求可以包含额外的header等信息，等待服务器响应。
+获取响应内容
+如果服务器能正常响应，会得到一个Response，Response的内容便是所要获取的页面内容，类型可能是HTML,Json字符串，二进制数据（图片或者视频）等类型
+解析内容
+得到的内容可能是HTML,可以用正则表达式，页面解析库进行解析，可能是Json,可以直接转换为Json对象解析，可能是二进制数据，可以做保存或者进一步的处理
+保存数据
+保存形式多样，可以存为文本，也可以保存到数据库，或者保存特定格式的文件</code></pre><p>##Spring Boot</p>
+<pre><code>Spring Boot 是所有基于 Spring 开发的项目的起点。Spring Boot 的设计是为了让你尽可能快的跑起来 Spring 应用程序并且尽可能减少你的配置文件。简单来说就是SpringBoot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合了所有的jar包，spring boot整合了所有的框架（不知道这样比喻是否合适）。
+
+2.2、SpringBoot四个主要特性
 
 1、SpringBoot Starter：他将常用的依赖分组进行了整合，将其合并到一个依赖中，这样就可以一次性添加到项目的Maven或Gradle构建中；
 
@@ -513,11 +765,25 @@ background-size:contain;
 3、命令行接口：（Command-line-interface, CLI）：SpringBoot的CLI发挥了Groovy编程语言的优势，并结合自动配置进一步简化Spring应用的开发；
 
 4、Actuatir：它为SpringBoot应用的所有特性构建一个小型的应用程序。但首先，我们快速了解每项特性，更好的体验他们如何简化Spring编程模型。
-异常</code></pre><p>##Java中的异常有哪几类？分别怎么使用？<br>    Exception又包含了运行时异常(RuntimeException, 又叫非检查异常)和非运行时异常(又叫检查异常)<br>    (1) Error是程序无法处理了, 如果OutOfMemoryError、OutOfMemoryError等等, 这些异常发生时, java虚拟机一般会终止线程 .<br>    (2) 运行时异常都是RuntimeException类及其子类,如 NullPointerException、IndexOutOfBoundsException等, 这些异常是不检查的异常, 是在程序运行的时候可能会发生的, 所以程序可以捕捉, 也可以不捕捉. 这些错误一般是由程序的逻辑错误引起的, 程序应该从逻辑角度去尽量避免.<br>    (3) 检查异常是运行时异常以外的异常, 也是Exception及其子类, 这些异常从程序的角度来说是必须经过捕捉检查处理的, 否则不能通过编译. 如IOException、SQLException等<br>    在使用所有有可能为空的对象的时候先做是否为空的判断，为空可以打日志，然后RETURN掉，或者作其它处理，这个可能为空是有很多情况的，比如说数据库查询出错异常没抛到调用方法这来，或者初始化出异常，没有初始化成功导致对象为NULL，等等这种是有很多的，所以最好是养成多打日志的习惯，这样找问题会很简单</p>
-<pre><code>数组越界异常，先看哪里出错了，然后用判断条件来避免。
+异常</code></pre><p>##Java中的异常有哪几类？分别怎么使用？</p>
+<pre><code>Exception又包含了运行时异常(RuntimeException, 又叫非检查异常)和非运行时异常(又叫检查异常)
+(1) Error是程序无法处理了, 如果OutOfMemoryError、OutOfMemoryError等等, 这些异常发生时, java虚拟机一般会终止线程 .
+(2) 运行时异常都是RuntimeException类及其子类,如 NullPointerException、IndexOutOfBoundsException等, 这些异常是不检查的异常, 是在程序运行的时候可能会发生的, 所以程序可以捕捉, 也可以不捕捉. 这些错误一般是由程序的逻辑错误引起的, 程序应该从逻辑角度去尽量避免.
+(3) 检查异常是运行时异常以外的异常, 也是Exception及其子类, 这些异常从程序的角度来说是必须经过捕捉检查处理的, 否则不能通过编译. 如IOException、SQLException等
+在使用所有有可能为空的对象的时候先做是否为空的判断，为空可以打日志，然后RETURN掉，或者作其它处理，这个可能为空是有很多情况的，比如说数据库查询出错异常没抛到调用方法这来，或者初始化出异常，没有初始化成功导致对象为NULL，等等这种是有很多的，所以最好是养成多打日志的习惯，这样找问题会很简单
+
+数组越界异常，先看哪里出错了，然后用判断条件来避免。
 if ( (pos &lt; 0) || (pos &gt; ARRAY_SIZE) ) {异常处理}</code></pre><p>##用Axure画的相关的原型图</p>
-<p>##怎么配置tomacat的端口号<br>    1.修改端口:<br>    在Tomcat的安装目录下的\conf目录下,打开server.xml,<br>    找到<br>    <Connector port="8080" protocol="HTTP/1.1" connectiontimeout="20000" redirectport="8443"><br>    将8080改为你想要的端口8081</Connector></p>
-<pre><code>2.映射路径:
+<p>##怎么配置tomacat的端口号</p>
+<pre><code>1.修改端口:
+在Tomcat的安装目录下的\conf目录下,打开server.xml,
+找到
+&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+connectionTimeout=&quot;20000&quot;
+redirectPort=&quot;8443&quot;/&gt;
+将8080改为你想要的端口8081
+
+2.映射路径:
 还是在server.xml配置文件中,
 在&lt;/host&gt;这个结束标签之前加上如下的配置信息:
 &lt;Context
@@ -529,8 +795,14 @@ docBase=&quot;e:\myApp&quot; /&gt;
 在server.xml中添加以下:
 &lt;Connector port=&quot;65535&quot; protocol=&quot;HTTP/1.1&quot;
 connectionTimeout=&quot;20000&quot; /&gt;
-Tomcat的端口号最大到65535.</code></pre><p>##Jvm<br>    <img src="/2019/12/07/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/jvm%E8%BF%90%E8%A1%8C%E5%86%85%E5%AD%98%E5%8C%BA.png" alt><br>    1） 类装载器（ClassLoader）（用来装载.class文件）<br>    2） 执行引擎（执行字节码，或者执行本地方法）<br>    3） 运行时数据区（方法区、堆、虚拟机栈、程序计数器、本地方法栈）</p>
-<pre><code>首先我们对运行时数据区中的5个区域进行分析：
+Tomcat的端口号最大到65535.</code></pre><p>##Jvm</p>
+<pre><code>![](jvm运行内存区.png)
+1） 类装载器（ClassLoader）（用来装载.class文件）
+2） 执行引擎（执行字节码，或者执行本地方法）
+3） 运行时数据区（方法区、堆、虚拟机栈、程序计数器、本地方法栈）
+
+
+首先我们对运行时数据区中的5个区域进行分析：
 3. 运行时数据区：
 3.1 堆：
 所有线程共享的内存区域，在虚拟机启动时创建。
@@ -577,9 +849,52 @@ Native方法关键字修饰的方法是一个原生态的方法，方法对应�
 其特点是：如果正在执行java方法，则这个计数器记录的是正在执行的虚拟机字节码指令地址，如果正在执行Native方法，则这个计数器为空（undefined），此内存区域是唯一一个在java虚拟机中没有规定任何OutOfMemoryError异常情况的区域。
 使用场景：A线程先获取CPU时间片执行，当执行到一半的时候，B线程过来了，且优先级比A线程的高，所以处理器又去执行B线程了，把A线程挂起，当B线程执行完了以后，再回过头来执行A线程，这时就需要知道A线程已经执行的位置，也就是查看A中的程序计数器中的指令。
 
-总结：java对象存放在堆中，常量存放在方法区的常量池中，虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据放在方法区，以上区域都是线程共享的。栈是线程私有的，存放该方法的局部变量（基本类型、对象引用）操作数栈、动态链接、方法出口等信息。一个java程序对应一个JVM，一个方法对应一个java栈。</code></pre><p>###JVM垃圾回收算法<br>    1.标记–清除算法<br>    执行步骤：<br>    标记：遍历内存区域，对需要回收的对象打上标记。<br>    清除：再次遍历内存，对已经标记过的内存进行回收。<br>    缺点：<br>    效率问题；遍历了两次内存空间（第一次标记，第二次清除）。<br>    空间问题：容易产生大量内存碎片，当再需要一块比较大的内存时，无法找到一块满足要求的，因而不得不再次出发GC。<br>    2.复制算法<br>    将内存划分为等大的两块，每次只使用其中的一块。当一块用完了，触发GC时，将该块中存活的对象复制到另一块区域，然后一次性清理掉这块没有用的内存。下次触发GC时将那块中存活的的又复制到这块，然后抹掉那块，循环往复。<br>    优点<br>    相对于标记–清理算法解决了内存的碎片化问题。<br>    效率更高（清理内存时，记住首尾地址，一次性抹掉）。<br>    缺点：<br>    内存利用率不高，每次只能使用一半内存。<br>    3. 标记–整理算法<br>    因为前面的复制算法当对象的存活率比较高时，这样一直复制过来，复制过去，没啥意义，且浪费时间。所以针对老年代提出了“标记整理”算法。<br>    执行步骤：<br>    标记：对需要回收的进行标记<br>    整理：让存活的对象，向内存的一端移动，然后直接清理掉没有用的内存。<br>    4. 分代收集算法<br>    当前大多商用虚拟机都采用这种分代收集算法，这个算法并没有新的内容，只是根据对象的存活的时间的长短，将内存分为了新生代和老年代，这样就可以针对不同的区域，采取对应的算法。如：<br>    新生代，每次都有大量对象死亡，有老年代作为内存担保，采取复制算法。<br>    老年代，对象存活时间长，采用标记整理，或者标记清理算法都可。</p>
-<p>##Java<br>    java语言的优缺点<br>    角度一：<br>    优点：简单、安全、稳定、跨平台<br>    缺点：需要运行环境、不适合开发桌面应用程序<br>    应用：BS结构的ERP系统、金融系统、电子商务系统、网站等<br>    几乎所有的银行系统和银行网站都是基于Java平台的，你可以访问看看。<br>    角度二：<br>    优势：<br>    （1）一次编写，到处运行。<br>    （2）系统的多平台支持。<br>    （3）强大的可伸缩性。<br>    （4）多样化和功能强大的开发工具支持。<br>    劣势：<br>    （1） 与ASP一样，Java的一些优势正是它致命的问题所在。正是由于为了跨平台的功能，为了极度的伸缩能力，所以极大的增加了产品的复杂性。<br>    （2） Java的运行速度是用class常驻内存来完成的，所以它在一些情况下所使用的内存比起用户数量来说确实是“最低性能价格比”了。从另一方面，它还需要硬盘空间来储存一系列的。java文件和.class文件，以及对应的版本文件。<br>    角度三：<br>    1、跨平台性，虽然是很好的优势，可以让JAVA在任何的系统中运行，但是前提是该系统要安装JAVA虚拟机，这样导致一些JAVA编写的桌面程序无法在一般的用户（没有安装JAVA虚拟机的用户）上使用<br>    2、JAVA的身后是SUN公司，提供及时的API更新，但是过多的版本导致JAVA的向下兼容性很差。而SUN公司在J2EE上的标准定义的并不是完美，导致在J2EE的开发中多数使用开源框架，开源框架是好东西，但是更新速度并不快。<br>    3、都说面向对象的语言先进与面向过程，JAVA是OOP语言，但是它适合的是BS系统，在WEB项目中JAVA的实力毋庸置疑，但是转到了底层的程序却无法同C++抗衡。<br>    4、个人认为JAVA的最大优点是开源，但是这往往也成了最大的缺陷了，无法定义一个好的标准使得开发时使用了框架，在新的程序员来到公司时必须先了解框架，延缓了开发的时间。</p>
-<pre><code>Java中正确打印时间的
+总结：java对象存放在堆中，常量存放在方法区的常量池中，虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据放在方法区，以上区域都是线程共享的。栈是线程私有的，存放该方法的局部变量（基本类型、对象引用）操作数栈、动态链接、方法出口等信息。一个java程序对应一个JVM，一个方法对应一个java栈。</code></pre><p>###JVM垃圾回收算法</p>
+<pre><code>1.标记–清除算法
+执行步骤：
+标记：遍历内存区域，对需要回收的对象打上标记。
+清除：再次遍历内存，对已经标记过的内存进行回收。
+缺点：
+效率问题；遍历了两次内存空间（第一次标记，第二次清除）。
+空间问题：容易产生大量内存碎片，当再需要一块比较大的内存时，无法找到一块满足要求的，因而不得不再次出发GC。
+2.复制算法
+将内存划分为等大的两块，每次只使用其中的一块。当一块用完了，触发GC时，将该块中存活的对象复制到另一块区域，然后一次性清理掉这块没有用的内存。下次触发GC时将那块中存活的的又复制到这块，然后抹掉那块，循环往复。
+优点
+相对于标记–清理算法解决了内存的碎片化问题。
+效率更高（清理内存时，记住首尾地址，一次性抹掉）。
+缺点：
+内存利用率不高，每次只能使用一半内存。
+3. 标记–整理算法
+因为前面的复制算法当对象的存活率比较高时，这样一直复制过来，复制过去，没啥意义，且浪费时间。所以针对老年代提出了“标记整理”算法。
+执行步骤：
+标记：对需要回收的进行标记
+整理：让存活的对象，向内存的一端移动，然后直接清理掉没有用的内存。
+4. 分代收集算法
+当前大多商用虚拟机都采用这种分代收集算法，这个算法并没有新的内容，只是根据对象的存活的时间的长短，将内存分为了新生代和老年代，这样就可以针对不同的区域，采取对应的算法。如：
+新生代，每次都有大量对象死亡，有老年代作为内存担保，采取复制算法。
+老年代，对象存活时间长，采用标记整理，或者标记清理算法都可。</code></pre><p>##Java</p>
+<pre><code>java语言的优缺点
+角度一：
+优点：简单、安全、稳定、跨平台
+缺点：需要运行环境、不适合开发桌面应用程序
+应用：BS结构的ERP系统、金融系统、电子商务系统、网站等
+几乎所有的银行系统和银行网站都是基于Java平台的，你可以访问看看。
+角度二：
+优势：
+（1）一次编写，到处运行。
+（2）系统的多平台支持。
+（3）强大的可伸缩性。
+（4）多样化和功能强大的开发工具支持。
+劣势：
+（1） 与ASP一样，Java的一些优势正是它致命的问题所在。正是由于为了跨平台的功能，为了极度的伸缩能力，所以极大的增加了产品的复杂性。
+（2） Java的运行速度是用class常驻内存来完成的，所以它在一些情况下所使用的内存比起用户数量来说确实是“最低性能价格比”了。从另一方面，它还需要硬盘空间来储存一系列的。java文件和.class文件，以及对应的版本文件。 
+角度三：
+1、跨平台性，虽然是很好的优势，可以让JAVA在任何的系统中运行，但是前提是该系统要安装JAVA虚拟机，这样导致一些JAVA编写的桌面程序无法在一般的用户（没有安装JAVA虚拟机的用户）上使用
+2、JAVA的身后是SUN公司，提供及时的API更新，但是过多的版本导致JAVA的向下兼容性很差。而SUN公司在J2EE上的标准定义的并不是完美，导致在J2EE的开发中多数使用开源框架，开源框架是好东西，但是更新速度并不快。
+3、都说面向对象的语言先进与面向过程，JAVA是OOP语言，但是它适合的是BS系统，在WEB项目中JAVA的实力毋庸置疑，但是转到了底层的程序却无法同C++抗衡。
+4、个人认为JAVA的最大优点是开源，但是这往往也成了最大的缺陷了，无法定义一个好的标准使得开发时使用了框架，在新的程序员来到公司时必须先了解框架，延缓了开发的时间。
+
+Java中正确打印时间的
 SimpleDateFormat time=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
 String TimeString = time.format(new java.util.Date());
 Java中常见常用的类
@@ -591,13 +906,92 @@ Object类是所有类的父类
 5、Math类
 6、Random类
 7、Date类
-8、DateFormat</code></pre><p>##Linux中如何查看日志<br>    实时查看日志tail -f /var/log/messages<br>    常用的linux命令：        ls显示文件或目录<br>                        mkdir创建目录<br>                        cd切换目录<br>                        touch创建空文件<br>                        cat查看文件内容<br>                        cp拷贝<br>                        mv移动或重命名<br>                        rm删除文件<br>                        rmdir删除空目录<br>                        pwd显示当前目录<br>                        ifconfig查看网络情况<br>                        kill杀死进程<br>                        jps/ps/top 查看进程<br>                        tar:打包压缩<br>                        :q退出<br>                        :q!强制退出<br>                        :wq保存并退出<br>##初次设计数据库表中需要注意的问题<br>    1、选取最适用的字段属性<br>    2、使用连接（JOIN）来代替子查询(Sub-Queries)<br>    3、使用联合(UNION)来代替手动创建的临时表<br>    4、使用外键<br>    5、每个表有一个主键<br>    “数据结构分为8类有:数组、栈、队列、链表、树、散列表、堆、图。</p>
-<p>##拦截器与过滤器的区别 ：<br>     1.拦截器是基于java的反射机制的。而过滤器是基于函数回调，Spring框架支持，可Spring中的数据源、事务管理等。<br>     2.使用范围不同：拦截器不依赖与servlet容器，过滤器依赖与servlet容器。<br>     3.拦截器只能对action请求起作用，针对类，拦截器可以多次被调用。<br>     而过滤器则可以对几乎所有的请求起作用，在容器启动是初始化调用init方法，以后每个请求都调用doFilter()。作用范围包含拦截器。<br>     4.拦截器可以访问action上下文、值栈里的对象（即方法中的对象），而过滤器不能访问。<br>     5.拦截器可以在方法前后，异常前请求后各调用一次后等调用，<br>     而过滤器只能在请求前和。<br>     6.深度不同：Filter在Servlet前后作用，Interceptor在方法的前后作用，异常抛出前后，具有更大的弹性。所以优先使用拦截器。<br>     7.filter配置在web.xml中    interceptor配置在spring配置文件中   </p>
-<pre><code>拦截器是AOP的一种实现策略，可实现依赖注入。
+8、DateFormat</code></pre><p>##Linux中如何查看日志</p>
+<pre><code>实时查看日志tail -f /var/log/messages
+常用的linux命令：        ls显示文件或目录
+                    mkdir创建目录
+                    cd切换目录
+                    touch创建空文件
+                    cat查看文件内容
+                    cp拷贝
+                    mv移动或重命名
+                    rm删除文件
+                    rmdir删除空目录
+                    pwd显示当前目录
+                    ifconfig查看网络情况
+                    kill杀死进程
+                    jps/ps/top 查看进程
+                    tar:打包压缩
+                    :q退出
+                    :q!强制退出
+                    :wq保存并退出        </code></pre><p>##初次设计数据库表中需要注意的问题</p>
+<pre><code>1、选取最适用的字段属性
+2、使用连接（JOIN）来代替子查询(Sub-Queries)
+3、使用联合(UNION)来代替手动创建的临时表
+4、使用外键
+5、每个表有一个主键
+“数据结构分为8类有:数组、栈、队列、链表、树、散列表、堆、图。</code></pre><p>##拦截器与过滤器的区别 ： </p>
+<pre><code> 1.拦截器是基于java的反射机制的。而过滤器是基于函数回调，Spring框架支持，可Spring中的数据源、事务管理等。
+ 2.使用范围不同：拦截器不依赖与servlet容器，过滤器依赖与servlet容器。 
+ 3.拦截器只能对action请求起作用，针对类，拦截器可以多次被调用。
+ 而过滤器则可以对几乎所有的请求起作用，在容器启动是初始化调用init方法，以后每个请求都调用doFilter()。作用范围包含拦截器。
+ 4.拦截器可以访问action上下文、值栈里的对象（即方法中的对象），而过滤器不能访问。 
+ 5.拦截器可以在方法前后，异常前请求后各调用一次后等调用，
+ 而过滤器只能在请求前和。
+ 6.深度不同：Filter在Servlet前后作用，Interceptor在方法的前后作用，异常抛出前后，具有更大的弹性。所以优先使用拦截器。
+ 7.filter配置在web.xml中    interceptor配置在spring配置文件中   
+
+
+拦截器是AOP的一种实现策略，可实现依赖注入。
 因此它的完整加载顺序就是 ：ServletContext -&gt; context-param -&gt; listener-&gt; filter -&gt; servlet
 线程生命周期：它要经过新建(New)、就绪（Runnable）、运行（Running）、阻塞 
-(Blocked)和死亡(Dead)5 种状态。</code></pre><p>Html<br>##Css<br>    CSS选择符：id选择器(#myid)、类选择器(.myclassname)、标签选择器(div, h1, p)、相邻选择器(h1 + p)、子选择器（ul &gt; li）、后代选择器（li a）、通配符选择器（<em>）、属性选择器（a[rel=”external”]）、伪类选择器（a:hover, li:nth-child）<br>    行级元素(inline, css display属性)：span， strong， em， a ，del，i，code，<br>    内容决定元素所占位置<br>    不可以通过css改变宽高<br>    块级元素(block，css display属性)：div， p, ul, li ,ol, form, address，h1~h6，table &gt; tr &gt; th, td<br>    Js<br>    事件：<br>##js中常用事件<br>    鼠标事件<br>    onclick：点击某个对象时触发<br>    ondblclick：双击某个对象时触发<br>    onmouseover：鼠标移入某个元素时触发<br>    onmouseout：鼠标移出某个元素时触发<br>    onmouseenter：鼠标进入某个元素时触发<br>    onmouseleave：鼠标离开某个元素时触发<br>    onmousedown：鼠标按下时触发<br>    onmouseup：鼠标抬起时触发<br>    onmousemove：鼠标被移动时触发<br>    onwheel：鼠标滚轮滚动时触发<br>    oncontextmenu：点击鼠标右键时触发</em>/<br>    键盘事件<br>    onkeydown：键盘的键按下时触发<br>    onkeyup：键盘的键放开时触发<br>    onkeypress：按下或按住键盘键时触发<em>/<br>    框架/对象事件<br>    onresize：浏览器窗口大小改变时触发<br>    onabort：图形的加载被中断时触发<br>    onload：元素加载完时触发<br>    onerror：当加载文档或者图片时（没找到）发生的错误时触发<br>    onscroll：文档滚动时触发<br>    onpageshow：用户访问页面时触发<br>    onunload：用户退出页面时触发</em>/<br>    表单事件<br>    onfocus：元素获得焦点时触发<br>    onblur：元素失去焦点时触发<br>    onchange：元素内容改变时触发<br>    oninput：元素获取用户输入时触发<br>    onsubmit：提交按钮时触发<br>    onreset：重置按钮时触发<br>    onselect：文本被选中时触发<em>/<br>    拖动事件<br>    ondrag：元素正在拖动时触发<br>    ondragend：用户完成元素拖动时触发</em>/<br>    多媒体事件<br>    onplay：在视频/音频开始播放时触发<br>    onended：在视频/音频播放结束时触发<br>    onpause：在视频/音频暂停时触发*/</p>
-<p>##Jq<br>    html、css、js、jquery之间的关系详解<br>    html、css、js、jquery之间的关系<br>    1.简单的理解一：<br>    1)HTML 定义了网页的内容<br>    2)CSS 描述了网页的布局<br>    3)JavaScript 网页的行为<br>    4)jQuery 是一个 JavaScript 库。<br>    jQuery 极大地简化了 JavaScript 编程。<br>    2.从实质上理解二：<br>    1)HTML(超文本标记语言, 标记标签)<br>    我们可以把它说成是静态代码。<br>    2)CSS(层叠样式表)<br>    使用CSS制作网页时，可以有效地对页面的布局、边框、字体、颜色、背景和其它效果实现更加精确的控制。<br>    3)JavaScript (是世界上最流行的网上最流行的脚本语言)<br>    使用JavaScript代码可以让前台变的有交互(点击事件)<br>    4)JQuery是(JavaScript库)<br>    jQuery是一个封装好的文件，就是指别编写完了供他人重复使用的JS代码<br>    2.比喻的理解：<br>    一个人，他有头，有手，有脚，有身体,规定他怎么说话，怎么走路这些是“html”;<br>    给这个人穿上衣服，打扮一下，这是”CSS”;<br>    让这个人变得更漂亮一点,扔掉过时的衣服，买一些新化妆品，这是css3;<br>    这个人还要为了生活,去工作,上班,这是”JS”;<br>    这个人工作中用到的工具/工具箱, 这是”jQuery”</p>
+(Blocked)和死亡(Dead)5 种状态。</code></pre><p>Html<br>##Css</p>
+<pre><code>CSS选择符：id选择器(#myid)、类选择器(.myclassname)、标签选择器(div, h1, p)、相邻选择器(h1 + p)、子选择器（ul &gt; li）、后代选择器（li a）、通配符选择器（*）、属性选择器（a[rel=”external”]）、伪类选择器（a:hover, li:nth-child）
+行级元素(inline, css display属性)：span， strong， em， a ，del，i，code，
+内容决定元素所占位置
+不可以通过css改变宽高
+块级元素(block，css display属性)：div， p, ul, li ,ol, form, address，h1~h6，table &gt; tr &gt; th, td
+Js
+事件：</code></pre><p>##js中常用事件</p>
+<pre><code>鼠标事件
+onclick：点击某个对象时触发
+ondblclick：双击某个对象时触发
+onmouseover：鼠标移入某个元素时触发
+onmouseout：鼠标移出某个元素时触发
+onmouseenter：鼠标进入某个元素时触发
+onmouseleave：鼠标离开某个元素时触发
+onmousedown：鼠标按下时触发
+onmouseup：鼠标抬起时触发
+onmousemove：鼠标被移动时触发
+onwheel：鼠标滚轮滚动时触发
+oncontextmenu：点击鼠标右键时触发*/
+键盘事件
+onkeydown：键盘的键按下时触发
+onkeyup：键盘的键放开时触发
+onkeypress：按下或按住键盘键时触发*/
+框架/对象事件
+onresize：浏览器窗口大小改变时触发
+onabort：图形的加载被中断时触发
+onload：元素加载完时触发
+onerror：当加载文档或者图片时（没找到）发生的错误时触发
+onscroll：文档滚动时触发
+onpageshow：用户访问页面时触发
+onunload：用户退出页面时触发*/
+表单事件
+onfocus：元素获得焦点时触发
+onblur：元素失去焦点时触发
+onchange：元素内容改变时触发
+oninput：元素获取用户输入时触发
+onsubmit：提交按钮时触发
+onreset：重置按钮时触发
+onselect：文本被选中时触发*/
+拖动事件
+ondrag：元素正在拖动时触发
+ondragend：用户完成元素拖动时触发*/
+多媒体事件
+onplay：在视频/音频开始播放时触发
+onended：在视频/音频播放结束时触发
+onpause：在视频/音频暂停时触发*/</code></pre><p>##Jq<br>    html、css、js、jquery之间的关系详解<br>    html、css、js、jquery之间的关系<br>    1.简单的理解一：<br>    1)HTML 定义了网页的内容<br>    2)CSS 描述了网页的布局<br>    3)JavaScript 网页的行为<br>    4)jQuery 是一个 JavaScript 库。<br>    jQuery 极大地简化了 JavaScript 编程。<br>    2.从实质上理解二：<br>    1)HTML(超文本标记语言, 标记标签)<br>    我们可以把它说成是静态代码。<br>    2)CSS(层叠样式表)<br>    使用CSS制作网页时，可以有效地对页面的布局、边框、字体、颜色、背景和其它效果实现更加精确的控制。<br>    3)JavaScript (是世界上最流行的网上最流行的脚本语言)<br>    使用JavaScript代码可以让前台变的有交互(点击事件)<br>    4)JQuery是(JavaScript库)<br>    jQuery是一个封装好的文件，就是指别编写完了供他人重复使用的JS代码<br>    2.比喻的理解：<br>    一个人，他有头，有手，有脚，有身体,规定他怎么说话，怎么走路这些是“html”;<br>    给这个人穿上衣服，打扮一下，这是”CSS”;<br>    让这个人变得更漂亮一点,扔掉过时的衣服，买一些新化妆品，这是css3;<br>    这个人还要为了生活,去工作,上班,这是”JS”;<br>    这个人工作中用到的工具/工具箱, 这是”jQuery”</p>
 <pre><code>又如：
 HTML:搭建舞台的框架
 CSS:舞台的装饰
