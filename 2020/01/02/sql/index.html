@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="超人昊bk">
 <meta property="og:description" content="toc: true sql语句更新（update）语句批量更新如果数据都是不同的可以用caseupdate student SET   name &#x3D;case id     name是要修改的字段                  when 1 THEN &amp;apos;李&amp;apos;                when 2 THEN &amp;apos;李1&amp;apos;                wh">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-13T11:09:25.422Z">
+<meta property="og:updated_time" content="2020-01-16T09:38:13.635Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="超人昊bk" type="application/atom+xml">
@@ -165,10 +165,8 @@ sax = CASE id     ‘’是里面要加入字符串
             when 2 THEN &apos;女&apos;   
             when 3 THEN &apos;男&apos;    
 END  
-WHERE id IN (1,2,3);  </code></pre><p>####如果数据是相同的批量更新</p>
-<pre><code>UPDATE t_summary_ent_plan    
-SET ent_name=&apos;祁阳海螺水泥有限责任公司&apos;,ent_code=691822520,city_code=4311,city_name=&apos;永州&apos;    
-where id IN (302,303,304,305,306);</code></pre><p>####关联更新</p>
+WHERE id IN (1,2,3);  </code></pre><p>####如果数据是相同的批量更新<br>    UPDATE t_summary_ent_plan<br>    SET ent_name=’祁阳海螺水泥有限责任公司’,ent_code=691822520,city_code=4311,city_name=’永州’<br>    where id IN (302,303,304,305,306);</p>
+<p>####关联更新</p>
 <pre><code>（1）update 表名1，表名2
     set  字段名=值
     where 条件and条件and  
@@ -239,8 +237,12 @@ WHERE City LIKE &apos;[!ALN]%&apos;</code></pre><p>##Oracle to_char(参数,’FM
 含义是：如果该函数的第一个参数为空那么显示第二个参数的值，如果第一个参数的值不为空，则显示第三个参数的值。SQL&gt; select ename,NVL2(comm,-1,1) from emp;
 
 NULLIF函数
-NULLIF(exp1,expr2)函数的作用是如果exp1和exp2相等则返回空(NULL)，否则返回第一个值。</code></pre><p>##oracle decode函数使用方法<br>decode()函数是ORACLE PL/SQL是功能强大的函数之一，目前还只有ORACLE公司的SQL提供了此函数，其他数据库厂商的SQL实现还没有此功能。</p>
-<p>1、比较大小<br>　　select decode(sign(变量1-变量2),-1,变量1,变量2) from dual; –取较小值<br>　　sign()函数根据某个值是0、正数还是负数，分别返回0、1、-1<br>2.DECODE(value,if1,then1,if2,then2,if3,then3,…,else)<br>等于就是value（if(){}else if(){}else ）</p>
+NULLIF(exp1,expr2)函数的作用是如果exp1和exp2相等则返回空(NULL)，否则返回第一个值。</code></pre><p>##oracle decode函数使用方法<br>    decode()函数是ORACLE PL/SQL是功能强大的函数之一，目前还只有ORACLE公司的SQL提供了此函数，其他数据库厂商的SQL实现还没有此功能。</p>
+<pre><code>1、比较大小
+　　select decode(sign(变量1-变量2),-1,变量1,变量2) from dual; --取较小值
+　　sign()函数根据某个值是0、正数还是负数，分别返回0、1、-1
+2.DECODE(value,if1,then1,if2,then2,if3,then3,...,else)
+等于就是value（if(){}else if(){}else ）</code></pre><p>##Oracle数据库提供的截取字符串函数是：Substr<br>    substr(stirng1,strat,length);截取功能；<br>    解析一下：string1是你要截取的字符串，strat是要开始截取的位置，length是你要截取多少个字符串。<br>##Oracle to_char(参数,’FM990.00’)函数<br>    select to_char(参数,’FM990.00’) from 表格<br>    刚看到FM990.00确实不知道什么意思，通过网上资料，知道了<br>    0表示：如果参数(double或者float类型)存在数字就显示数字，不存在数字就显示0<br>    9表示：如果参数(double或者float类型)存在数字就显示数字，不存在数字就显示空格<br>    FM表示：将9带来的空格删除<br>    拓展：所以上面例子就表示左边最小为1位(个位)，最大3位(百位)，有两位小数，当然格式就不仅仅是FM990.00，格式就是无限个，可以为FM999999.99或者FM9999990.00等等<br>    上面是oracle的做法，mysql可以用format函数：<br>    select to_char(参数,’FM999999.900’) from 表格<br>    …，可以有多种格式，这里只要知道这种做法就可以<br>##include总结<br>    MyBatis中sql标签定义SQL片段，<br>    include标签引用，可以复用SQL片段<br>    sql标签中id属性对应include标签中的refid属性。通过include标签将sql片段和原sql片段进行拼接成一个完整的sql语句进行执行。<br>    <sql id="sqlid"><br>        res_type_id,res_type</sql><br>    <select id="selectbyId" resulttype="com.property.vo.PubResTypeVO"><br>        select<br>        <include refid="sqlid"><br>        from pub_res_type</include></select><br>    引用同一个xml中的sql片段<br>    <include refid="sqlid"><br>    引用公用的sql片段<br>    <include refid="namespace.sqlid"></include></include></p>
 
       
 

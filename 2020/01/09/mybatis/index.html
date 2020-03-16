@@ -8,14 +8,14 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>mybatis | 超人昊bk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###{}和${}的区别 1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &amp;quot;111&amp;quot;, 如果传入的值是id，则解析成的sql为order by &amp;quot;id&amp;quot;.  2. $将传入的数据直接显示生成在sql中。如：order by $use">
+  <meta name="description" content="##{}和${}的区别 1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &amp;quot;111&amp;quot;, 如果传入的值是id，则解析成的sql为order by &amp;quot;id&amp;quot;.  2. $将传入的数据直接显示生成在sql中。如：order by $user">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;09&#x2F;mybatis&#x2F;index.html">
 <meta property="og:site_name" content="超人昊bk">
-<meta property="og:description" content="###{}和${}的区别 1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &amp;quot;111&amp;quot;, 如果传入的值是id，则解析成的sql为order by &amp;quot;id&amp;quot;.  2. $将传入的数据直接显示生成在sql中。如：order by $use">
+<meta property="og:description" content="##{}和${}的区别 1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &amp;quot;111&amp;quot;, 如果传入的值是id，则解析成的sql为order by &amp;quot;id&amp;quot;.  2. $将传入的数据直接显示生成在sql中。如：order by $user">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-09T00:31:29.980Z">
+<meta property="og:updated_time" content="2020-01-16T09:07:46.805Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="超人昊bk" type="application/atom+xml">
@@ -153,7 +153,7 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###{}和${}的区别</p>
+        <p>##{}和${}的区别</p>
 <pre><code>1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by &quot;111&quot;, 如果传入的值是id，则解析成的sql为order by &quot;id&quot;.
 
 2. $将传入的数据直接显示生成在sql中。如：order by $user_id$，如果传入的值是111,那么解析成sql时的值为order by user_id,  如果传入的值是id，则解析成的sql为order by id.
@@ -188,7 +188,13 @@ sql注入是什么：
 
 
 （1）$符号一般用来当作占位符，常使用Linux脚本的人应该对此有更深的体会吧。既然是占位符，当然就是被用来替换的。知道了这点就能很容易区分$和#，从而不容易记错了。
-（2）预编译的机制。预编译是提前对SQL语句进行预编译，而其后注入的参数将不会再进行SQL编译。我们知道，SQL注入是发生在编译的过程中，因为恶意注入了某些特殊字符，最后被编译成了恶意的执行操作。而预编译机制则可以很好的防止SQL注入。</code></pre>
+（2）预编译的机制。预编译是提前对SQL语句进行预编译，而其后注入的参数将不会再进行SQL编译。我们知道，SQL注入是发生在编译的过程中，因为恶意注入了某些特殊字符，最后被编译成了恶意的执行操作。而预编译机制则可以很好的防止SQL注入。</code></pre><p>##resultType与 parameterType<br>    resultType：<br>    省去了创建resultMap的步骤，但是必须保证结果集中的属性 和 bean对象类中的属性是相对应的。<br>    <select id="checkLogin" parametertype="user" resulttype="user"><br>    SELECT NAME FROM USER WHERE NAME=#{name} AND PWD=#{pwd} </select><br>    这儿返回的结果是实体bean</p>
+<pre><code>parameterType：
+这个是关键，也是传递过来参数最常用的。最下边附上取值的源码。
+&lt;select id=&quot;checkLogin&quot; parameterType=&quot;user&quot; resultType=&quot;user&quot;&gt; 
+SELECT NAME FROM USER WHERE NAME=#{name} AND PWD=#{pwd} &lt;/select&gt;
+如上代码，它的作用就是接收dao层传递过来的值。
+如果是单纯的String的话，parameterType=”string”即可，看源码可以知道，取值不区分大小写，最终都会被转化为小写；在SQL语句中，直接使用#{_parameter}即可。</code></pre>
       
 
       
